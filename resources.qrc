@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>models/bullet.png</file>
+        <file>models/land.png</file>
+        <file>models/plane.png</file>
+        <file>models/river.png</file>
+    </qresource>
+</RCC>
