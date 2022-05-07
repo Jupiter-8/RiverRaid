@@ -1,8 +1,15 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+#include "plane.h"
+#include "land.h"
+#include "river.h"
+#include "ship.h"
+
 #include <QGraphicsScene>
 #include <QWidget>
+#include <QPolygonF>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -15,6 +22,8 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+
+    void initialize();
 
 private:
     Ui::Widget *ui;

@@ -4,5 +4,6 @@
         <file>models/land.png</file>
         <file>models/plane.png</file>
         <file>models/river.png</file>
+        <file>models/ship.png</file>
     </qresource>
 </RCC>

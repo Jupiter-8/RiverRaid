@@ -1,8 +1,8 @@
 #include "plane.h"
 #include "bullet.h"
 
-Plane::Plane(qreal x, qreal y, QGraphicsItem *parent, QPixmap pixmap)
-    : BaseGameObject(x, y, pixmap, parent)
+Plane::Plane(qreal x, qreal y, quint8 speed, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speed, pixmap, parent)
 {
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
@@ -37,7 +37,7 @@ void Plane::advance(int phase)
             for(int i = 0; i < collidingItems.size(); i++)
             {
                 BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
-                if(object->getType() == GameObjectType::land)
+                if(object->getType() == GameObjectType::LandType)
                 {
                     QList<QGraphicsItem *> items = scene()->items();
                     for(int j = 0; j < items.size(); j++)
@@ -52,5 +52,5 @@ void Plane::advance(int phase)
 
 GameObjectType Plane::getType()
 {
-    return GameObjectType::plane;
+    return GameObjectType::PlaneType;
 }

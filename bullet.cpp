@@ -1,7 +1,7 @@
 #include "bullet.h"
 
-Bullet::Bullet(qreal x, qreal y, QGraphicsItem *parent, QPixmap pixmap)
-    : BaseGameObject(x, y, pixmap, parent)
+Bullet::Bullet(qreal x, qreal y, quint8 speed, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speed, pixmap, parent)
 {
 
 }
@@ -16,5 +16,5 @@ void Bullet::advance(int phase)
 
 GameObjectType Bullet::getType()
 {
-    return GameObjectType::bullet;
+    return GameObjectType::BulletType;
 }

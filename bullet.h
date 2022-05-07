@@ -6,7 +6,7 @@
 class Bullet : public BaseGameObject
 {
 public:
-    Bullet(qreal x, qreal y, QGraphicsItem *parent = nullptr, QPixmap pixmap = QPixmap(":/images/models/bullet.png"));
+    Bullet(qreal x, qreal y, quint8 speed = 0, QPixmap pixmap = QPixmap(":/images/models/bullet.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
     GameObjectType getType();

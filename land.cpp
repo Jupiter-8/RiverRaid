@@ -1,7 +1,7 @@
 #include "land.h"
 
-Land::Land(qreal x, qreal y, QGraphicsItem *parent, QPixmap pixmap)
-    : BaseGameObject(x, y, pixmap, parent)
+Land::Land(qreal x, qreal y, quint8 speed, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speed, pixmap, parent)
 {
 
 }
@@ -16,5 +16,5 @@ void Land::advance(int phase)
 
 GameObjectType Land::getType()
 {
-    return GameObjectType::land;
+    return GameObjectType::LandType;
 }

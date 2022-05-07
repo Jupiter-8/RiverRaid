@@ -6,7 +6,7 @@
 class River : public BaseGameObject
 {
 public:
-    River(qreal x, qreal y, QGraphicsItem *parent = nullptr, QPixmap pixmap = QPixmap(":/images/models/river.png"));
+    River(qreal x, qreal y, quint8 speed = 0, QPixmap pixmap = QPixmap(":/images/models/river.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
     GameObjectType getType();

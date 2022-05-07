@@ -11,7 +11,7 @@
 class Plane : public BaseGameObject
 {
 public:
-    Plane(qreal x, qreal y, QGraphicsItem *parent = nullptr, QPixmap pixmap = QPixmap(":/images/models/plane.png"));
+    Plane(qreal x, qreal y, quint8 speed = 0, QPixmap pixmap = QPixmap(":/images/models/plane.png"), QGraphicsItem *parent = nullptr);
 
     void keyPressEvent(QKeyEvent *event);
     void advance(int phase);

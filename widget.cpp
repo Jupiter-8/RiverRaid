@@ -1,11 +1,5 @@
 #include "widget.h"
 #include "ui_widget.h"
-#include "plane.h"
-#include "land.h"
-#include "river.h"
-
-#include <QPolygonF>
-#include <QTimer>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -16,18 +10,18 @@ Widget::Widget(QWidget *parent)
     scene = new QGraphicsScene(0, 0, 800, 600, this);
     ui->graphicsView->setScene(scene);
 
-    Land *land = new Land(0, -4400);
-    land->setSpeed(55);
+    Land * land = new Land(0, -4400, 15);
     scene->addItem(land);
 
-    River * river = new River(0, -4400);
-    river->setSpeed(55);
+    River * river = new River(0, -4400, 15);
     scene->addItem(river);
 
-    Plane *plane = new Plane(350, 490);
+    Plane * plane = new Plane(350, 490);
     plane->setScale(0.5);
-    plane->setSpeed(0);
     scene->addItem(plane);
+
+    Ship * ship = new Ship(350, 20, 15);
+    scene->addItem(ship);
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
@@ -37,5 +31,10 @@ Widget::Widget(QWidget *parent)
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::initialize()
+{
+
 }
 

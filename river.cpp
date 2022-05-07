@@ -1,7 +1,7 @@
 #include "river.h"
 
-River::River(qreal x, qreal y, QGraphicsItem *parent, QPixmap pixmap)
-    : BaseGameObject(x, y, pixmap, parent)
+River::River(qreal x, qreal y, quint8 speed, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speed, pixmap, parent)
 {
 
 }
@@ -16,5 +16,5 @@ void River::advance(int phase)
 
 GameObjectType River::getType()
 {
-    return GameObjectType::river;
+    return GameObjectType::RiverType;
 }

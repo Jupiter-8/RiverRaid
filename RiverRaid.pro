@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     plane.cpp \
     river.cpp \
+    ship.cpp \
     widget.cpp
 
 HEADERS += \
@@ -24,6 +25,7 @@ HEADERS += \
     land.h \
     plane.h \
     river.h \
+    ship.h \
     widget.h
 
 FORMS += \
