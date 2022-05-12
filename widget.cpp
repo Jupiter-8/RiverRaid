@@ -1,9 +1,11 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include <QDebug>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
+    , running(false)
 {
     ui->setupUi(this);
 
@@ -20,12 +22,14 @@ Widget::Widget(QWidget *parent)
     plane->setScale(0.5);
     scene->addItem(plane);
 
-    Ship * ship = new Ship(350, 20, 15);
+    Ship * ship = new Ship(150, 20, 15);
     scene->addItem(ship);
 
-    QTimer *timer = new QTimer(this);
+    timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
-    timer->start(60);
+    connect(plane, &Plane::crash, this, &Widget::stopGame);
+
+    setFocus();
 }
 
 Widget::~Widget()
@@ -36,5 +40,23 @@ Widget::~Widget()
 void Widget::initialize()
 {
 
+}
+
+void Widget::keyPressEvent(QKeyEvent *event)
+{
+    int key = event->key();
+    if(key == Qt::Key_P)
+    {
+        timer->stop();
+    }
+    if(key == Qt::Key_S)
+    {
+        timer->start(60);
+    }
+}
+
+void Widget::stopGame()
+{
+    timer->stop();
 }
 

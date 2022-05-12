@@ -5,8 +5,9 @@
 
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
+#include <QObject>
 
-class BaseGameObject : public QGraphicsPixmapItem
+class BaseGameObject : public QObject, public QGraphicsPixmapItem
 {
 public:
     BaseGameObject(qreal x, qreal y, quint8 speed, QPixmap pixmap, QGraphicsItem *parent = nullptr);

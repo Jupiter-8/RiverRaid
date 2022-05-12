@@ -38,13 +38,7 @@ void Plane::advance(int phase)
             {
                 BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
                 if(object->getType() == GameObjectType::LandType)
-                {
-                    QList<QGraphicsItem *> items = scene()->items();
-                    for(int j = 0; j < items.size(); j++)
-                    {
-                        static_cast<BaseGameObject *>(items[j])->setSpeed(0);
-                    }
-                }
+                    emit crash();
             }
         }
     }

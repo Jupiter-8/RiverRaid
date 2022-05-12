@@ -10,6 +10,8 @@
 #include <QWidget>
 #include <QPolygonF>
 #include <QTimer>
+#include <QKeyEvent>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -24,9 +26,15 @@ public:
     ~Widget();
 
     void initialize();
+    void keyPressEvent(QKeyEvent *event);
+
+public slots:
+    void stopGame();
 
 private:
     Ui::Widget *ui;
     QGraphicsScene *scene;
+    QTimer *timer;
+    bool running;
 };
 #endif // WIDGET_H
