@@ -1,8 +1,8 @@
 #include "plane.h"
 #include "bullet.h"
 
-Plane::Plane(qreal x, qreal y, quint8 speed, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speed, pixmap, parent)
+Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent)
 {
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();

@@ -6,7 +6,8 @@
 class Land : public BaseGameObject
 {
 public:
-    Land(qreal x, qreal y, quint8 speed = 0, QPixmap pixmap = QPixmap(":/images/models/land.png"), QGraphicsItem *parent = nullptr);
+    Land(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),
+         QPixmap pixmap = QPixmap(":/images/models/land.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
     GameObjectType getType();

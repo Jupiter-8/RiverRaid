@@ -3,10 +3,13 @@
 
 #include "basegameobject.h"
 
+#include <QGraphicsScene>
+
 class Ship : public BaseGameObject
 {
 public:
-    Ship(qreal x, qreal y, quint8 speed = 0, QPixmap pixmap = QPixmap(":/images/models/ship.png"), QGraphicsItem *parent = nullptr);
+    Ship(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),
+         QPixmap pixmap = QPixmap(":/images/models/ship.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
     GameObjectType getType();
