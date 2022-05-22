@@ -4,26 +4,7 @@
 Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent)
 {
-    setFlag(QGraphicsItem::ItemIsFocusable);
-    setFocus();
-}
 
-void Plane::keyPressEvent(QKeyEvent *event)
-{
-    if(event->key() == Qt::Key_Left && x() > 0)
-    {
-        setX(x() - 20);
-    }
-    if(event->key() == Qt::Key_Right && x()< 711)
-    {
-        setX(x() + 20);
-    }
-    if(event->key() == Qt::Key_Space)
-    {
-        Bullet * bullet = new Bullet(x() + 23, x() - 15);
-        bullet->setScale(0.5);
-        scene()->addItem(bullet);
-    }
 }
 
 void Plane::advance(int phase)

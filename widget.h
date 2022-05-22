@@ -12,6 +12,8 @@
 #include <QTimer>
 #include <QKeyEvent>
 #include <QTimer>
+#include <QSet>
+#include <QEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -26,7 +28,7 @@ public:
     ~Widget();
 
     void initialize();
-    void keyPressEvent(QKeyEvent *event);
+    //void keyPressEvent(QKeyEvent *event);
 
 public slots:
     void stopGame();
@@ -36,5 +38,9 @@ private:
     QGraphicsScene *scene;
     QTimer *timer;
     bool running;
+    QSet<int> pressedKeys;
+    Plane *plane;
+
+    bool eventFilter(QObject *object, QEvent *event);
 };
 #endif // WIDGET_H
