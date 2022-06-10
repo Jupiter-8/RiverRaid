@@ -27,6 +27,7 @@ Widget::Widget(QWidget *parent)
 
     Ship * ship1 = new Ship(160, 20, 12, 25);
     scene->addItem(ship1);
+    //scene->removeItem(ship1);
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);

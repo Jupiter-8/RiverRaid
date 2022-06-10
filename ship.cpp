@@ -25,6 +25,14 @@ void Ship::advance(int phase)
                     this->setTransform(transform);
                     speedX = -speedX;
                 }
+                else if(object->getType() == GameObjectType::PlaneType ||
+                        object->getType() == GameObjectType::BulletType
+                       )
+                {
+                    scene()->removeItem(this);
+                    delete this;
+                    return;
+                }
             }
         }
         moveBy(speedX, speedY);
