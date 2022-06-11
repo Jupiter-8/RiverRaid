@@ -19,7 +19,12 @@ public:
     virtual GameObjectType getType() = 0;
     virtual void destroy() = 0;
     void setSpeedX(quint8 value);
+    void setSpeedY(quint8 value);
+    quint8 getSpeedX();
+    quint8 getSpeedY();
     bool isDestroyed();
+
+
 
 protected:
     qint8 speedX;

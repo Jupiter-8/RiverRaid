@@ -9,9 +9,24 @@ BaseGameObject::BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, Q
     setTransform(transform);
 }
 
-void BaseGameObject::setSpeedX(quint8 speed)
+void BaseGameObject::setSpeedX(quint8 value)
 {
-    speedX = speed;
+    speedX = value;
+}
+
+void BaseGameObject::setSpeedY(quint8 value)
+{
+    speedY = value;
+}
+
+quint8 BaseGameObject::getSpeedX()
+{
+    return speedX;
+}
+
+quint8 BaseGameObject::getSpeedY()
+{
+    return speedY;
 }
 
 bool BaseGameObject::isDestroyed()

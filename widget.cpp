@@ -1,9 +1,8 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include "bullet.h"
+
 #include <QDebug>
-#include <QKeyEvent>
-#include <QTransform>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -76,6 +75,14 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
         {
             plane->setX(plane->x() + 20);
         }
+        if(pressedKeys.contains(Qt::Key_Up))
+        {
+            changeObjectsYSpeed(true);
+        }
+        if(pressedKeys.contains(Qt::Key_Down))
+        {
+            changeObjectsYSpeed(false);
+        }
         if(pressedKeys.contains(Qt::Key_Space))
         {
             Bullet * bullet = new Bullet(plane->x() + 23, plane->y() - 15, 0, -25);
@@ -89,5 +96,21 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
     }
 
     return false;
+}
+
+void Widget::changeObjectsYSpeed(bool direction)
+{
+    QList<QGraphicsItem *> objects = scene->items();
+    for(int i = 0; i < objects.size(); i++)
+    {
+        BaseGameObject *object = static_cast<BaseGameObject *>(objects[i]);
+        if(object->getType() != GameObjectType::PlaneType && object->getType() != GameObjectType::BulletType)
+        {
+            if(direction && object->getSpeedY() < 25)
+                object->setSpeedY(object->getSpeedY() + 1);
+            else if(!direction && object->getSpeedY() > 2)
+                object->setSpeedY(object->getSpeedY() - 1);
+        }
+    }
 }
 

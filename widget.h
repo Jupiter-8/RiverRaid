@@ -10,10 +10,11 @@
 #include <QWidget>
 #include <QPolygonF>
 #include <QTimer>
-#include <QKeyEvent>
-#include <QTimer>
 #include <QSet>
 #include <QEvent>
+#include <QDebug>
+#include <QKeyEvent>
+#include <QTransform>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -42,5 +43,6 @@ private:
     Plane *plane;
 
     bool eventFilter(QObject *object, QEvent *event);
+    void changeObjectsYSpeed(bool direction);
 };
 #endif // WIDGET_H
