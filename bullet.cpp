@@ -14,11 +14,6 @@ void Bullet::advance(int phase)
     }
 }
 
-void Bullet::destroy()
-{
-
-}
-
 GameObjectType Bullet::getType()
 {
     return GameObjectType::BulletType;

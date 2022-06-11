@@ -9,7 +9,8 @@ enum GameObjectType
     BulletType = 4,
     ShipType = 5,
     EnemyPlaneType = 6,
-    Helictopter = 7
+    HelictopterType = 7,
+    BridgeType = 8
 };
 
 #endif // GAMEOBJECTTYPE_H

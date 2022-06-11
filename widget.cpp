@@ -15,6 +15,9 @@ Widget::Widget(QWidget *parent)
     scene = new QGraphicsScene(0, 0, 800, 600, this);
     ui->graphicsView->setScene(scene);
 
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
+
     Land * land = new Land(0, -4400, 0, 1);
     scene->addItem(land);
 
@@ -24,6 +27,9 @@ Widget::Widget(QWidget *parent)
     plane->setScale(0.5);
     scene->addItem(plane);
 
+    Bridge * bridge = new Bridge(300, -3530, 0, 1);
+    scene->addItem(bridge);
+
     Ship * ship1 = new Ship(160, 20, 1, 1);
     scene->addItem(ship1);
 
@@ -31,13 +37,11 @@ Widget::Widget(QWidget *parent)
     enemyPlane->setScale(0.7);
     scene->addItem(enemyPlane);
 
-    Helicopter * helicopter = new Helicopter(160, 30, -1, 1);
+    Helicopter * helicopter = new Helicopter(210, 260, -1, 1);
     helicopter->setScale(0.7);
     scene->addItem(helicopter);
 
 
-    timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
     connect(plane, &Plane::crash, this, &Widget::stopGame);
 
     scene->setFocus();
@@ -69,7 +73,7 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
     }
     else if(keyEvent->key() == Qt::Key_S)
     {
-            timer->start(10);
+            timer->start(1);
     }
 
     if(event->type() == QEvent::KeyPress /*&& !keyEvent->isAutoRepeat()*/)

@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     basegameobject.cpp \
+    bridge.cpp \
     bullet.cpp \
     enemyplane.cpp \
     helicopter.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     basegameobject.h \
+    bridge.h \
     bullet.h \
     enemyplane.h \
     gameobjecttype.h \

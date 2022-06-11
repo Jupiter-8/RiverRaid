@@ -40,5 +40,5 @@ void Helicopter::advance(int phase)
 
 GameObjectType Helicopter::getType()
 {
-    return GameObjectType::Helictopter;
+    return GameObjectType::HelictopterType;
 }

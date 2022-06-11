@@ -9,6 +9,7 @@ Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transfor
 
 void Plane::advance(int phase)
 {
+
     if(phase == 0)
     {
         if(!scene()->collidingItems(this).empty())
