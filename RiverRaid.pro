@@ -12,6 +12,7 @@ SOURCES += \
     basegameobject.cpp \
     bullet.cpp \
     enemyplane.cpp \
+    helicopter.cpp \
     land.cpp \
     main.cpp \
     plane.cpp \
@@ -24,6 +25,7 @@ HEADERS += \
     bullet.h \
     enemyplane.h \
     gameobjecttype.h \
+    helicopter.h \
     land.h \
     plane.h \
     river.h \

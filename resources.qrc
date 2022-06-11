@@ -9,5 +9,7 @@
         <file>models/enemy_plane.png</file>
         <file>models/destroyed_1.png</file>
         <file>models/destroyed_2.png</file>
+        <file>models/helicopter_1.png</file>
+        <file>models/helicopter_2.png</file>
     </qresource>
 </RCC>
