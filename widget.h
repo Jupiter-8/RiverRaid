@@ -8,6 +8,7 @@
 #include "enemyplane.h"
 #include "helicopter.h"
 #include "bridge.h"
+#include "fuel.h"
 
 #include <QGraphicsScene>
 #include <QWidget>

@@ -13,6 +13,7 @@ SOURCES += \
     bridge.cpp \
     bullet.cpp \
     enemyplane.cpp \
+    fuel.cpp \
     helicopter.cpp \
     land.cpp \
     main.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     bridge.h \
     bullet.h \
     enemyplane.h \
+    fuel.h \
     gameobjecttype.h \
     helicopter.h \
     land.h \

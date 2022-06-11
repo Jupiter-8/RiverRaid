@@ -41,6 +41,9 @@ Widget::Widget(QWidget *parent)
     helicopter->setScale(0.7);
     scene->addItem(helicopter);
 
+    Fuel * fuel = new Fuel(360, -500, 0, 1);
+    fuel->setScale(0.7);
+    scene->addItem(fuel);
 
     connect(plane, &Plane::crash, this, &Widget::stopGame);
 

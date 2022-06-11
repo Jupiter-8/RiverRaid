@@ -14,5 +14,6 @@
         <file>models/bridge.png</file>
         <file>models/bridge_destroyed_1.png</file>
         <file>models/bridge_destroyed_2.png</file>
+        <file>models/fuel.png</file>
     </qresource>
 </RCC>
