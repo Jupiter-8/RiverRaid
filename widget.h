@@ -5,6 +5,7 @@
 #include "land.h"
 #include "river.h"
 #include "ship.h"
+#include "enemyplane.h"
 
 #include <QGraphicsScene>
 #include <QWidget>

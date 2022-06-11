@@ -9,6 +9,18 @@ BaseGameObject::BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, Q
     setTransform(transform);
 }
 
+void BaseGameObject::destroy(qreal scale)
+{
+    destroyed = true;
+    speedX = 0;
+    timer->start(30);
+    setScale(scale);
+    timer->singleShot(1, this, [this] () { this->changePixmap(":/images/models/destroyed_1.png"); } );
+    timer->singleShot(250, this, [this] () { this->changePixmap(":/images/models/destroyed_2.png"); } );
+    timer->singleShot(500, this, [this] () { this->changePixmap(":/images/models/destroyed_1.png"); } );
+    timer->singleShot(750, this, &BaseGameObject::deleteObject );
+}
+
 void BaseGameObject::setSpeedX(quint8 value)
 {
     speedX = value;

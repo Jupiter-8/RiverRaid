@@ -39,17 +39,6 @@ void Ship::advance(int phase)
     }
 }
 
-void Ship::destroy()
-{
-    destroyed = true;
-    speedX = 0;
-    timer->start(30);
-    timer->singleShot(1, this, [this] () { this->changePixmap(":/images/models/ship_destroyed_1.png"); } );
-    timer->singleShot(250, this, [this] () { this->changePixmap(":/images/models/ship_destroyed_2.png"); } );
-    timer->singleShot(500, this, [this] () { this->changePixmap(":/images/models/ship_destroyed_1.png"); } );
-    timer->singleShot(750, this, &Ship::deleteObject );
-}
-
 GameObjectType Ship::getType()
 {
     return GameObjectType::ShipType;

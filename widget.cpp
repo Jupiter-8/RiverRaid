@@ -27,6 +27,10 @@ Widget::Widget(QWidget *parent)
     Ship * ship1 = new Ship(160, 20, 4, 5);
     scene->addItem(ship1);
 
+    EnemyPlane * enemyPlane = new EnemyPlane(800, 10, -5, 5);
+    enemyPlane->setScale(0.7);
+    scene->addItem(enemyPlane);
+
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
     connect(plane, &Plane::crash, this, &Widget::stopGame);

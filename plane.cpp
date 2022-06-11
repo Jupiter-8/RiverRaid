@@ -19,7 +19,9 @@ void Plane::advance(int phase)
             {
                 BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
                 if(!object->isDestroyed() &&
-                        (object->getType() == GameObjectType::LandType || object->getType() == GameObjectType::ShipType))
+                        (object->getType() == GameObjectType::LandType ||
+                         object->getType() == GameObjectType::ShipType ||
+                         object->getType() == GameObjectType::EnemyPlaneType))
                 {
                     emit crash();
                     changePixmap(":/images/models/plane_crashed.png");
