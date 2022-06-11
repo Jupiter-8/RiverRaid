@@ -10,6 +10,7 @@ public:
          QPixmap pixmap = QPixmap(":/images/models/land.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
+    void destroy();
     GameObjectType getType();
 };
 

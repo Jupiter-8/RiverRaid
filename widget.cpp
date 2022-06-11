@@ -16,18 +16,17 @@ Widget::Widget(QWidget *parent)
     scene = new QGraphicsScene(0, 0, 800, 600, this);
     ui->graphicsView->setScene(scene);
 
-    Land * land = new Land(0, -4400, 0, 25);
+    Land * land = new Land(0, -4400, 0, 5);
     scene->addItem(land);
 
-    River * river = new River(0, -4400, 0, 25);
+    River * river = new River(0, -4400, 0, 5);
     scene->addItem(river);
 
     plane->setScale(0.5);
     scene->addItem(plane);
 
-    Ship * ship1 = new Ship(160, 20, 12, 25);
+    Ship * ship1 = new Ship(160, 20, 4, 5);
     scene->addItem(ship1);
-    //scene->removeItem(ship1);
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
@@ -62,7 +61,7 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
     }
     else if(keyEvent->key() == Qt::Key_S)
     {
-            timer->start(60);
+            timer->start(30);
     }
 
     if(event->type() == QEvent::KeyPress /*&& !keyEvent->isAutoRepeat()*/)

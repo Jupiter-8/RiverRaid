@@ -17,6 +17,7 @@ public:
           QPixmap pixmap = QPixmap(":/images/models/plane.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
+    void destroy();
     GameObjectType getType();
 
 signals:

@@ -5,5 +5,8 @@
         <file>models/plane.png</file>
         <file>models/river.png</file>
         <file>models/ship.png</file>
+        <file>models/plane_crashed.png</file>
+        <file>models/ship_destroyed_1.png</file>
+        <file>models/ship_destroyed_2.png</file>
     </qresource>
 </RCC>

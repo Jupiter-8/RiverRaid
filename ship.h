@@ -3,8 +3,6 @@
 
 #include "basegameobject.h"
 
-#include <QGraphicsScene>
-
 class Ship : public BaseGameObject
 {
 public:
@@ -12,7 +10,9 @@ public:
          QPixmap pixmap = QPixmap(":/images/models/ship.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
+    void destroy();
     GameObjectType getType();
+
 };
 
 #endif // SHIP_H

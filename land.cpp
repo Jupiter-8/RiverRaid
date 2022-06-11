@@ -14,6 +14,11 @@ void Land::advance(int phase)
     }
 }
 
+void Land::destroy()
+{
+
+}
+
 GameObjectType Land::getType()
 {
     return GameObjectType::LandType;

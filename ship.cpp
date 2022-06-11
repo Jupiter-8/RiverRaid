@@ -1,5 +1,6 @@
 #include "ship.h"
 
+#include <QTimer>
 #include <QTransform>
 
 Ship::Ship(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
@@ -29,14 +30,24 @@ void Ship::advance(int phase)
                         object->getType() == GameObjectType::BulletType
                        )
                 {
-                    scene()->removeItem(this);
-                    delete this;
+                    destroy();
                     return;
                 }
             }
         }
         moveBy(speedX, speedY);
     }
+}
+
+void Ship::destroy()
+{
+    destroyed = true;
+    speedX = 0;
+    timer->start(30);
+    timer->singleShot(1, this, [this] () { this->changePixmap(":/images/models/ship_destroyed_1.png"); } );
+    timer->singleShot(250, this, [this] () { this->changePixmap(":/images/models/ship_destroyed_2.png"); } );
+    timer->singleShot(500, this, [this] () { this->changePixmap(":/images/models/ship_destroyed_1.png"); } );
+    timer->singleShot(750, this, &Ship::deleteObject );
 }
 
 GameObjectType Ship::getType()

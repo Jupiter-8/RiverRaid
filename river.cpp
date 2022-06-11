@@ -10,8 +10,14 @@ void River::advance(int phase)
 {
     if(phase == 0)
     {
+        qDebug() << y();
         moveBy(speedX, speedY);
     }
+}
+
+void River::destroy()
+{
+
 }
 
 GameObjectType River::getType()

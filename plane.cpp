@@ -18,11 +18,20 @@ void Plane::advance(int phase)
             for(int i = 0; i < collidingItems.size(); i++)
             {
                 BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
-                if(object->getType() == GameObjectType::LandType)
+                if(!object->isDestroyed() &&
+                        (object->getType() == GameObjectType::LandType || object->getType() == GameObjectType::ShipType))
+                {
                     emit crash();
+                    changePixmap(":/images/models/plane_crashed.png");
+                }
             }
         }
     }
+}
+
+void Plane::destroy()
+{
+
 }
 
 GameObjectType Plane::getType()
