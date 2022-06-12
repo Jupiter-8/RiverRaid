@@ -10,7 +10,28 @@ void Bullet::advance(int phase)
 {
     if(phase == 0)
     {
-        moveBy(speedX, speedY);
+        if(!scene()->collidingItems(this).empty())
+        {
+            QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
+            for(int i = 0; i < collidingItems.size(); i++)
+            {
+                BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
+                if(object->getType() == GameObjectType::ShipType ||
+                   object->getType() == GameObjectType::HelictopterType ||
+                   object->getType() == GameObjectType::EnemyPlaneType ||
+                   object->getType() == GameObjectType::FuelType ||
+                   object->getType() == GameObjectType::BridgeType
+                  )
+                {
+                    deleteObject();
+                    return;
+                }
+            }
+        }
+        if(y() == 0)
+            deleteObject();
+        else
+            moveBy(speedX, speedY);
     }
 }
 

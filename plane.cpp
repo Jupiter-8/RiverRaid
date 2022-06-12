@@ -2,7 +2,7 @@
 #include "bullet.h"
 
 Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent), fuelAmount(1000), isRefuelling(false)
+    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent), fuelAmount(10000), isRefuelling(false)
 {
 
 }
@@ -11,7 +11,6 @@ void Plane::advance(int phase)
 {
     if(phase == 0)
     {
-        qDebug() << fuelAmount << " " << isRefuelling;
         if(!isRefuelling && fuelAmount - speedY > 0)
             fuelAmount -= speedY;
         else if(fuelAmount - speedY <= 0)

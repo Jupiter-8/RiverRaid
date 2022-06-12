@@ -10,6 +10,11 @@ void Helicopter::advance(int phase)
 {
     if(phase == 0)
     {
+        if(y() == 600)
+        {
+            deleteObject();
+            return;
+        }
         if(!scene()->collidingItems(this).empty())
         {
             QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);

@@ -34,9 +34,9 @@ Widget::Widget(QWidget *parent)
     Ship * ship1 = new Ship(160, 20, 1, 1);
     scene->addItem(ship1);
 
-    EnemyPlane * enemyPlane = new EnemyPlane(800, 10, -3, 1);
-    enemyPlane->setScale(0.7);
-    scene->addItem(enemyPlane);
+//    EnemyPlane * enemyPlane = new EnemyPlane(800, 10, -3, 1);
+//    enemyPlane->setScale(0.7);
+//    scene->addItem(enemyPlane);
 
     Helicopter * helicopter = new Helicopter(210, -760, -1, 1);
     helicopter->setScale(0.7);
@@ -49,11 +49,11 @@ Widget::Widget(QWidget *parent)
     connect(plane, &Plane::crash, this, &Widget::stopGame);
     connect(plane, &Plane::noFuel, this, &Widget::stopGame);
 
-    connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(bridge, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(fuel, &BaseGameObject::addPoints, this, &Widget::addPoints);
+//    connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+//    connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
+//    connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
+//    connect(bridge, &BaseGameObject::addPoints, this, &Widget::addPoints);
+//    connect(fuel, &BaseGameObject::addPoints, this, &Widget::addPoints);
 
     scene->setFocus();
     scene->installEventFilter(this);
@@ -72,6 +72,7 @@ void Widget::initialize()
 void Widget::stopGame()
 {
     timer->stop();
+    qDebug() << "Game Over";
 }
 
 void Widget::addPoints(quint32 value)
@@ -114,7 +115,7 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
         }
         if(pressedKeys.contains(Qt::Key_Space))
         {
-            Bullet * bullet = new Bullet(plane->x() + 23, plane->y() - 15, 0, -25);
+            Bullet * bullet = new Bullet(plane->x() + 23, plane->y() - 15, 0, -12);
             bullet->setScale(0.5);
             scene->addItem(bullet);
         }
