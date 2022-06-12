@@ -49,3 +49,8 @@ GameObjectType Plane::getType()
 {
     return GameObjectType::PlaneType;
 }
+
+uint Plane::getFuelAmount()
+{
+    return fuelAmount;
+}

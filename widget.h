@@ -35,6 +35,7 @@ public:
     void initialize();
 
 public slots:
+    void advance();
     void stopGame();
     void addPoints(quint32 points);
 

@@ -19,6 +19,7 @@ Widget::Widget(QWidget *parent)
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
+    connect(timer, &QTimer::timeout, this, &Widget::advance);
 
     Land * land = new Land(0, -4400, 0, speedY);
     scene->addItem(land);
@@ -68,6 +69,11 @@ Widget::~Widget()
 void Widget::initialize()
 {
 
+}
+
+void Widget::advance()
+{
+    ui->fuelLabel2->setText(QString::number((plane->getFuelAmount() / 100)) + " %");
 }
 
 void Widget::stopGame()

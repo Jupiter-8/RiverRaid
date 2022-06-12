@@ -22,6 +22,7 @@ public:
 
     void advance(int phase);
     GameObjectType getType();
+    uint getFuelAmount();
 
 signals:
     void crash();
