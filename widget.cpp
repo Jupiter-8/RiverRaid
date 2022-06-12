@@ -10,12 +10,9 @@ Widget::Widget(QWidget *parent)
     , running(false)
     , plane(new Plane(360, 490, 0, 1))
     , points(0)
+    , speedY(1)
 {
     ui->setupUi(this);
-    ui->pointsPanel->setStyleSheet("background-color: #909090");
-    ui->splitFrame->setStyleSheet("background-color: #000000");
-    ui->pointsLabel1->setStyleSheet("color: #e8e85c");
-    ui->pointsLabel2->setStyleSheet("color: #e8e85c");
 
     scene = new QGraphicsScene(0, 0, 800, 600, this);
     ui->graphicsView->setScene(scene);
@@ -23,26 +20,26 @@ Widget::Widget(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
 
-    Land * land = new Land(0, -4400, 0, 1);
+    Land * land = new Land(0, -4400, 0, speedY);
     scene->addItem(land);
 
-    River * river = new River(0, -4400, 0, 1);
+    River * river = new River(0, -4400, 0, speedY);
     scene->addItem(river);
 
     plane->setScale(0.5);
     scene->addItem(plane);
 
-    Bridge * bridge = new Bridge(300, -3530, 0, 1);
+    Bridge * bridge = new Bridge(300, -3530, 0, speedY);
     scene->addItem(bridge);
 
-    Ship * ship1 = new Ship(160, 20, 1, 1);
+    Ship * ship1 = new Ship(160, 20, 1, speedY);
     scene->addItem(ship1);
 
-    EnemyPlane * enemyPlane = new EnemyPlane(800, 10, -3, 1);
+    EnemyPlane * enemyPlane = new EnemyPlane(800, 10, -3, speedY);
     enemyPlane->setScale(0.7);
     scene->addItem(enemyPlane);
 
-    Helicopter * helicopter = new Helicopter(210, -760, -1, 1);
+    Helicopter * helicopter = new Helicopter(210, -760, -1, speedY);
     helicopter->setScale(0.7);
     scene->addItem(helicopter);
 
@@ -82,7 +79,7 @@ void Widget::stopGame()
 void Widget::addPoints(quint32 value)
 {
     points += value;
-    ui->pointsLabel2->setText( QString::number(points));
+    ui->pointsLabel2->setText(QString::number(points));
 }
 
 bool Widget::eventFilter(QObject *object, QEvent *event)
@@ -135,17 +132,21 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
 
 void Widget::changeObjectsYSpeed(bool direction)
 {
+    if(direction && speedY < 20)
+        speedY += 1;
+    else if(!direction && speedY > 1)
+        speedY -= 1;
+
     QList<QGraphicsItem *> objects = scene->items();
     for(int i = 0; i < objects.size(); i++)
     {
         BaseGameObject *object = static_cast<BaseGameObject *>(objects[i]);
         if(object->getType() != GameObjectType::BulletType)
         {
-            if(direction && object->getSpeedY() < 25)
-                object->setSpeedY(object->getSpeedY() + 1);
-            else if(!direction && object->getSpeedY() > 2)
-                object->setSpeedY(object->getSpeedY() - 1);
+            object->setSpeedY(speedY);
         }
     }
+
+    ui->speedLabel2->setText(QString::number(speedY));
 }
 

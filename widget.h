@@ -46,6 +46,7 @@ private:
     QSet<int> pressedKeys;
     Plane *plane;
     quint16 points;
+    quint8 speedY;
 
     bool eventFilter(QObject *object, QEvent *event);
     void changeObjectsYSpeed(bool direction);
