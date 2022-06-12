@@ -8,8 +8,14 @@ Bullet::Bullet(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transf
 
 void Bullet::advance(int phase)
 {
+
     if(phase == 0)
     {
+        if(y() < -10)
+        {
+            deleteObject();
+            return;
+        }
         if(!scene()->collidingItems(this).empty())
         {
             QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
@@ -28,10 +34,7 @@ void Bullet::advance(int phase)
                 }
             }
         }
-        if(y() == 0)
-            deleteObject();
-        else
-            moveBy(speedX, speedY);
+        moveBy(speedX, speedY);
     }
 }
 
