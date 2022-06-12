@@ -2,6 +2,8 @@
 #define HELICOPTER_H
 
 #include "basegameobject.h"
+#include "land.h"
+#include "bullet.h"
 
 class Helicopter : public BaseGameObject
 {

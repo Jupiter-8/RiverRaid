@@ -2,6 +2,12 @@
 #define PLANE_H
 
 #include "basegameobject.h"
+#include "fuel.h"
+#include "ship.h"
+#include "land.h"
+#include "enemyplane.h"
+#include "helicopter.h"
+#include "bridge.h"
 
 #include <QKeyEvent>
 #include <QGraphicsScene>

@@ -2,6 +2,7 @@
 #define FUEL_H
 
 #include "basegameobject.h"
+#include "bullet.h"
 
 class Fuel : public BaseGameObject
 {

@@ -2,6 +2,7 @@
 #define ENEMYPLANE_H
 
 #include "basegameobject.h"
+#include "bullet.h"
 
 class EnemyPlane : public BaseGameObject
 {

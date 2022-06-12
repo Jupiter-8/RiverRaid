@@ -15,19 +15,22 @@ void Fuel::advance(int phase)
             deleteObject();
             return;
         }
-        if(!scene()->collidingItems(this).empty())
+        else if(y() < 600 && y() > 0)
         {
             QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
-            for(int i = 0; i < collidingItems.size(); i++)
+            if(!collidingItems.empty())
             {
-                BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
-                if(object->getType() == GameObjectType::BulletType)
+                for(int i = 0; i < collidingItems.size(); i++)
                 {
-                    if(!isDestroyed())
-                        emit addPoints(80);
-                    destroy(0.5);
-
-                    return;
+                    if(typeid(*(collidingItems[i])) == typeid(Bullet))
+                    {
+                        if(!isDestroyed())
+                            emit addPoints(80);
+                        //destroy(0.5);
+                        setPixmap(QPixmap());
+                        static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        return;
+                    }
                 }
             }
         }

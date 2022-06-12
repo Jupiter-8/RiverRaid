@@ -13,7 +13,6 @@ Widget::Widget(QWidget *parent)
     , speedY(1)
 {
     ui->setupUi(this);
-
     scene = new QGraphicsScene(0, 0, 800, 600, this);
     ui->graphicsView->setScene(scene);
 
@@ -33,29 +32,32 @@ Widget::Widget(QWidget *parent)
     Bridge * bridge = new Bridge(300, -3530, 0, speedY);
     scene->addItem(bridge);
 
-    Ship * ship1 = new Ship(160, 20, 1, speedY);
+    Ship * ship1 = new Ship(160, -250, 1, speedY);
     scene->addItem(ship1);
 
-    EnemyPlane * enemyPlane = new EnemyPlane(800, 10, -3, speedY);
+    Ship * ship3 = new Ship(160, -1750, 1, speedY);
+    scene->addItem(ship3);
+
+    EnemyPlane * enemyPlane = new EnemyPlane(800, 300, -3, speedY);
     enemyPlane->setScale(0.7);
     scene->addItem(enemyPlane);
 
-    Helicopter * helicopter = new Helicopter(210, -760, -1, speedY);
+    Helicopter * helicopter = new Helicopter(210, -570, -1, speedY);
     helicopter->setScale(0.7);
     scene->addItem(helicopter);
 
-    Fuel * fuel = new Fuel(360, -500, 0, 1);
+    Fuel * fuel = new Fuel(360, -2500, 0, 1);
     fuel->setScale(0.7);
     scene->addItem(fuel);
 
     connect(plane, &Plane::crash, this, &Widget::stopGame);
     connect(plane, &Plane::noFuel, this, &Widget::stopGame);
 
-    connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(bridge, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(fuel, &BaseGameObject::addPoints, this, &Widget::addPoints);
+      connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+      connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
+      connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
+      connect(bridge, &BaseGameObject::addPoints, this, &Widget::addPoints);
+      connect(fuel, &BaseGameObject::addPoints, this, &Widget::addPoints);
 
     scene->setFocus();
     scene->installEventFilter(this);

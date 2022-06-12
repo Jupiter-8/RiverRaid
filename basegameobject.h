@@ -33,9 +33,11 @@ protected:
     bool destroyed;
     QTimer *timer;
 
+public slots:
+    void deleteObject();
+
 protected slots:
     void changePixmap(QString path);
-    void deleteObject();
 
 signals:
     void addPoints(quint32 points);

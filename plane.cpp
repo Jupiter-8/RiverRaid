@@ -16,24 +16,25 @@ void Plane::advance(int phase)
         else if(fuelAmount - speedY <= 0)
             emit noFuel();
 
-        if(!scene()->collidingItems(this).empty())
+        QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
+        if(!collidingItems.empty())
         {
-            QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
-
             for(int i = 0; i < collidingItems.size(); i++)
             {
                 BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
                 if(!object->isDestroyed())
                 {
-                    if(object->getType() == GameObjectType::LandType ||
-                       object->getType() == GameObjectType::ShipType ||
-                       object->getType() == GameObjectType::EnemyPlaneType
+                    if(typeid(*(collidingItems[i])) == typeid(Land) ||
+                       typeid(*(collidingItems[i])) == typeid(Ship) ||
+                       typeid(*(collidingItems[i])) == typeid(EnemyPlane) ||
+                       typeid(*(collidingItems[i])) == typeid(Bridge) ||
+                       typeid(*(collidingItems[i])) == typeid(Helicopter)
                     )
                     {
                         emit crash();
                         changePixmap(":/images/models/plane_crashed.png");
                     }
-                    else if(object->getType() == GameObjectType::FuelType)
+                    else if(typeid(*(collidingItems[i])) == typeid(Fuel))
                     {
                         isRefuelling = true;
                         fuelAmount += 15;

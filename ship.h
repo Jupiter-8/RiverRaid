@@ -2,6 +2,9 @@
 #define SHIP_H
 
 #include "basegameobject.h"
+#include "land.h"
+#include "bullet.h"
+#include <QTransform>
 
 class Ship : public BaseGameObject
 {

@@ -9,11 +9,11 @@
         <file>models/destroyed_2.png</file>
         <file>models/helicopter_1.png</file>
         <file>models/helicopter_2.png</file>
-        <file>models/land.png</file>
         <file>models/bullet.png</file>
         <file>models/bridge.png</file>
         <file>models/bridge_destroyed_1.png</file>
         <file>models/bridge_destroyed_2.png</file>
         <file>models/fuel.png</file>
+        <file>models/land.png</file>
     </qresource>
 </RCC>

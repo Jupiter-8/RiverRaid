@@ -3,7 +3,7 @@
 Helicopter::Helicopter(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent)
 {
-    timer->start(1);
+
 }
 
 void Helicopter::advance(int phase)
@@ -15,34 +15,34 @@ void Helicopter::advance(int phase)
             deleteObject();
             return;
         }
-        if(!scene()->collidingItems(this).empty())
+        else if(y() < 600 && y() > 0)
         {
             QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
-
-            for(int i = 0; i < collidingItems.size(); i++)
+            if(!collidingItems.empty())
             {
-                BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
-                if(object->getType() == GameObjectType::LandType)
+                for(int i = 0; i < collidingItems.size(); i++)
                 {
-                    transform.rotate(180, Qt::YAxis);
-                    transform.translate(-65,0);
-                    this->setTransform(transform);
-
-                    speedX = -speedX;
-                }
-                else if(object->getType() == GameObjectType::PlaneType ||
-                        object->getType() == GameObjectType::BulletType
-                       )
-                {
-                    if(!isDestroyed())
-                        emit addPoints(60);
-                    destroy(0.4);
-
-                    return;
+                    if(typeid(*(collidingItems[i])) == typeid(Land))
+                    {
+                        transform.rotate(180, Qt::YAxis);
+                        transform.translate(-65,0);
+                        setTransform(transform);
+                        speedX = -speedX;
+                    }
+                    else if(typeid(*(collidingItems[i])) == typeid(Bullet))
+                    {
+                        if(!isDestroyed())
+                            emit addPoints(60);
+                        destroy(0.4);
+                        static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        return;
+                    }
                 }
             }
+            moveBy(speedX, speedY);
         }
-        moveBy(speedX, speedY);
+        else
+            moveBy(0, speedY);
     }
 }
 

@@ -10,28 +10,27 @@ void Bridge::advance(int phase)
 {
     if(phase == 0)
     {
-        if(!scene()->collidingItems(this).empty())
+        if(y() < 600 && y() > 0)
         {
             QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
-
-            for(int i = 0; i < collidingItems.size(); i++)
+            if(!collidingItems.empty())
             {
-                BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
-                if(object->getType() == GameObjectType::PlaneType ||
-                        object->getType() == GameObjectType::BulletType
-                  )
+                for(int i = 0; i < collidingItems.size(); i++)
                 {
-                    if(!isDestroyed())
-                        emit addPoints(500);
-                    destroyed = true;
-                    speedX = 0;
-                    timer->start(1);
-                    timer->singleShot(1, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_1.png"); } );
-                    timer->singleShot(250, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_2.png"); } );
-                    timer->singleShot(500, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_1.png"); } );
-                    timer->singleShot(750, this, &Bridge::deleteObject );
+                    BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
+                    if(object->getType() == GameObjectType::BulletType)
+                    {
+                        if(!isDestroyed())
+                            emit addPoints(500);
+                        destroyed = true;
+                        speedX = 0;
+                        timer->singleShot(1, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_1.png"); } );
+                        timer->singleShot(250, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_2.png"); } );
+                        timer->singleShot(500, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_1.png"); } );
+                        timer->singleShot(750, this, &Bridge::deleteObject );
 
-                    return;
+                        return;
+                    }
                 }
             }
         }
