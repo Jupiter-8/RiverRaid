@@ -3,9 +3,14 @@
 
 #include "basegameobject.h"
 
+#include <QMediaPlayer>
+
 class Bullet : public BaseGameObject
 {
     Q_OBJECT
+
+private:
+    QMediaPlayer *player;
 
 public:
     Bullet(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),

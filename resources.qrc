@@ -16,4 +16,7 @@
         <file>models/fuel.png</file>
         <file>models/land.png</file>
     </qresource>
+    <qresource prefix="/music">
+        <file>sounds/gun_shoot.wav</file>
+    </qresource>
 </RCC>

@@ -53,6 +53,7 @@ Widget::Widget(QWidget *parent)
     connect(plane, &Plane::crash, this, &Widget::stopGame);
     connect(plane, &Plane::noFuel, this, &Widget::stopGame);
 
+
       connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
       connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
       connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
@@ -148,7 +149,7 @@ void Widget::changeObjectsYSpeed(bool direction)
     QList<QGraphicsItem *> objects = scene->items();
     for(int i = 0; i < objects.size(); i++)
     {
-        if(typeid(*(objects[i])) == typeid(Bullet))
+        if(typeid(*(objects[i])) != typeid(Bullet))
         {
             static_cast<BaseGameObject *>(objects[i])->setSpeedY(speedY);
         }
