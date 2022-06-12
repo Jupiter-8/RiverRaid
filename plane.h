@@ -13,7 +13,8 @@ class Plane : public BaseGameObject
     Q_OBJECT
 
 private:
-    quint32 fuel;
+    uint fuelAmount;
+    bool isRefuelling;
 
 public:
     Plane(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),
@@ -24,6 +25,7 @@ public:
 
 signals:
     void crash();
+    void noFuel();
 };
 
 #endif // PLANE_H

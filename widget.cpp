@@ -8,7 +8,7 @@ Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
     , running(false)
-    , plane(new Plane(360, 490))
+    , plane(new Plane(360, 490, 0, 1))
     , points(0)
 {
     ui->setupUi(this);
@@ -47,6 +47,7 @@ Widget::Widget(QWidget *parent)
     scene->addItem(fuel);
 
     connect(plane, &Plane::crash, this, &Widget::stopGame);
+    connect(plane, &Plane::noFuel, this, &Widget::stopGame);
 
     connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
     connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
@@ -132,7 +133,7 @@ void Widget::changeObjectsYSpeed(bool direction)
     for(int i = 0; i < objects.size(); i++)
     {
         BaseGameObject *object = static_cast<BaseGameObject *>(objects[i]);
-        if(object->getType() != GameObjectType::PlaneType && object->getType() != GameObjectType::BulletType)
+        if(object->getType() != GameObjectType::BulletType)
         {
             if(direction && object->getSpeedY() < 25)
                 object->setSpeedY(object->getSpeedY() + 1);
