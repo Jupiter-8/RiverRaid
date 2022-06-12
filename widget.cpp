@@ -12,6 +12,10 @@ Widget::Widget(QWidget *parent)
     , points(0)
 {
     ui->setupUi(this);
+    ui->pointsPanel->setStyleSheet("background-color: #909090");
+    ui->splitFrame->setStyleSheet("background-color: #000000");
+    ui->pointsLabel1->setStyleSheet("color: #e8e85c");
+    ui->pointsLabel2->setStyleSheet("color: #e8e85c");
 
     scene = new QGraphicsScene(0, 0, 800, 600, this);
     ui->graphicsView->setScene(scene);
@@ -34,9 +38,9 @@ Widget::Widget(QWidget *parent)
     Ship * ship1 = new Ship(160, 20, 1, 1);
     scene->addItem(ship1);
 
-//    EnemyPlane * enemyPlane = new EnemyPlane(800, 10, -3, 1);
-//    enemyPlane->setScale(0.7);
-//    scene->addItem(enemyPlane);
+    EnemyPlane * enemyPlane = new EnemyPlane(800, 10, -3, 1);
+    enemyPlane->setScale(0.7);
+    scene->addItem(enemyPlane);
 
     Helicopter * helicopter = new Helicopter(210, -760, -1, 1);
     helicopter->setScale(0.7);
@@ -49,11 +53,11 @@ Widget::Widget(QWidget *parent)
     connect(plane, &Plane::crash, this, &Widget::stopGame);
     connect(plane, &Plane::noFuel, this, &Widget::stopGame);
 
-//    connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
-//    connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
-//    connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
-//    connect(bridge, &BaseGameObject::addPoints, this, &Widget::addPoints);
-//    connect(fuel, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(bridge, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(fuel, &BaseGameObject::addPoints, this, &Widget::addPoints);
 
     scene->setFocus();
     scene->installEventFilter(this);
@@ -78,6 +82,7 @@ void Widget::stopGame()
 void Widget::addPoints(quint32 value)
 {
     points += value;
+    ui->pointsLabel2->setText( QString::number(points));
 }
 
 bool Widget::eventFilter(QObject *object, QEvent *event)
