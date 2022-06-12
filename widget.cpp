@@ -148,10 +148,9 @@ void Widget::changeObjectsYSpeed(bool direction)
     QList<QGraphicsItem *> objects = scene->items();
     for(int i = 0; i < objects.size(); i++)
     {
-        BaseGameObject *object = static_cast<BaseGameObject *>(objects[i]);
-        if(object->getType() != GameObjectType::BulletType)
+        if(typeid(*(objects[i])) == typeid(Bullet))
         {
-            object->setSpeedY(speedY);
+            static_cast<BaseGameObject *>(objects[i])->setSpeedY(speedY);
         }
     }
 

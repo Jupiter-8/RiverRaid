@@ -11,7 +11,6 @@ public:
          QPixmap pixmap = QPixmap(":/images/models/land.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
-    GameObjectType getType();
 };
 
 #endif // LAND_H

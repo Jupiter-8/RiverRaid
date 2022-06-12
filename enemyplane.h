@@ -13,7 +13,6 @@ public:
            QPixmap pixmap = QPixmap(":/images/models/enemy_plane.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
-    GameObjectType getType();
 };
 
 #endif // ENEMYPLANE_H

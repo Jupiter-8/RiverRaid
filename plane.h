@@ -27,7 +27,6 @@ public:
           QPixmap pixmap = QPixmap(":/images/models/plane.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
-    GameObjectType getType();
     uint getFuelAmount();
 
 signals:

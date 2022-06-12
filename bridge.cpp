@@ -17,8 +17,7 @@ void Bridge::advance(int phase)
             {
                 for(int i = 0; i < collidingItems.size(); i++)
                 {
-                    BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
-                    if(object->getType() == GameObjectType::BulletType)
+                    if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
                         if(!isDestroyed())
                             emit addPoints(500);
@@ -28,7 +27,7 @@ void Bridge::advance(int phase)
                         timer->singleShot(250, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_2.png"); } );
                         timer->singleShot(500, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_1.png"); } );
                         timer->singleShot(750, this, &Bridge::deleteObject );
-
+                        static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }
                 }
@@ -36,9 +35,4 @@ void Bridge::advance(int phase)
         }
         moveBy(speedX, speedY);
     }
-}
-
-GameObjectType Bridge::getType()
-{
-    return GameObjectType::BridgeType;
 }

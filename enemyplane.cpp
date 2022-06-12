@@ -36,8 +36,3 @@ void EnemyPlane::advance(int phase)
         moveBy(speedX, speedY);
     }
 }
-
-GameObjectType EnemyPlane::getType()
-{
-    return GameObjectType::EnemyPlaneType;
-}

@@ -37,8 +37,3 @@ void Fuel::advance(int phase)
         moveBy(speedX, speedY);
     }
 }
-
-GameObjectType Fuel::getType()
-{
-    return GameObjectType::FuelType;
-}

@@ -11,7 +11,6 @@ public:
           QPixmap pixmap = QPixmap(":/images/models/river.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
-    GameObjectType getType();
 };
 
 #endif // RIVER_H

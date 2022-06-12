@@ -46,11 +46,6 @@ void Plane::advance(int phase)
     }
 }
 
-GameObjectType Plane::getType()
-{
-    return GameObjectType::PlaneType;
-}
-
 uint Plane::getFuelAmount()
 {
     return fuelAmount;

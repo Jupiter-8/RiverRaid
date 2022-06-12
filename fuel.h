@@ -13,7 +13,6 @@ public:
            QPixmap pixmap = QPixmap(":/images/models/fuel.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
-    GameObjectType getType();
 };
 
 #endif // FUEL_H

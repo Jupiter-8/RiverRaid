@@ -14,7 +14,6 @@ public:
            QPixmap pixmap = QPixmap(":/images/models/helicopter_1.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
-    GameObjectType getType();
 };
 
 #endif // HELICOPTER_H

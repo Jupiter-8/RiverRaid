@@ -18,8 +18,3 @@ void Bullet::advance(int phase)
         moveBy(speedX, speedY);
     }
 }
-
-GameObjectType Bullet::getType()
-{
-    return GameObjectType::BulletType;
-}

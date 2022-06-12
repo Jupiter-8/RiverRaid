@@ -45,8 +45,3 @@ void Helicopter::advance(int phase)
             moveBy(0, speedY);
     }
 }
-
-GameObjectType Helicopter::getType()
-{
-    return GameObjectType::HelictopterType;
-}

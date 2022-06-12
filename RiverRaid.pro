@@ -28,7 +28,6 @@ HEADERS += \
     bullet.h \
     enemyplane.h \
     fuel.h \
-    gameobjecttype.h \
     helicopter.h \
     land.h \
     plane.h \

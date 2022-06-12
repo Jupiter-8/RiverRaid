@@ -44,8 +44,3 @@ void Ship::advance(int phase)
             moveBy(0, speedY);
     }
 }
-
-GameObjectType Ship::getType()
-{
-    return GameObjectType::ShipType;
-}

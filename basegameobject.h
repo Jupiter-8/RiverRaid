@@ -1,8 +1,6 @@
 #ifndef BASEGAMEOBJECT_H
 #define BASEGAMEOBJECT_H
 
-#include "gameobjecttype.h"
-
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
@@ -18,7 +16,6 @@ public:
     BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform,
                    QPixmap pixmap, QGraphicsItem *parent = nullptr);
 
-    virtual GameObjectType getType() = 0;
     void destroy(qreal scale = 1.0);
     void setSpeedX(quint8 value);
     void setSpeedY(quint8 value);

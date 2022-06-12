@@ -2,6 +2,7 @@
 #define BRIDGE_H
 
 #include "basegameobject.h"
+#include "bullet.h"
 
 class Bridge : public BaseGameObject
 {
@@ -12,7 +13,6 @@ public:
            QPixmap pixmap = QPixmap(":/images/models/bridge.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
-    GameObjectType getType();
 };
 
 #endif // BRIDGE_H

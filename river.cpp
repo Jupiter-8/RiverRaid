@@ -13,8 +13,3 @@ void River::advance(int phase)
         moveBy(speedX, speedY);
     }
 }
-
-GameObjectType River::getType()
-{
-    return GameObjectType::RiverType;
-}

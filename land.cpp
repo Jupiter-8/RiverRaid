@@ -13,8 +13,3 @@ void Land::advance(int phase)
         moveBy(speedX, speedY);
     }
 }
-
-GameObjectType Land::getType()
-{
-    return GameObjectType::LandType;
-}
