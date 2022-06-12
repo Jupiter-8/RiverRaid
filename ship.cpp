@@ -30,7 +30,10 @@ void Ship::advance(int phase)
                         object->getType() == GameObjectType::BulletType
                        )
                 {
+                    if(!isDestroyed())
+                        emit addPoints(30);
                     destroy();
+
                     return;
                 }
             }

@@ -8,16 +8,11 @@ River::River(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transfor
 
 void River::advance(int phase)
 {
-    qDebug() << speedY;
+    //qDebug() << speedY;
     if(phase == 0)
     {
         moveBy(speedX, speedY);
     }
-}
-
-void River::destroy()
-{
-
 }
 
 GameObjectType River::getType()

@@ -33,10 +33,10 @@ public:
     ~Widget();
 
     void initialize();
-    //void keyPressEvent(QKeyEvent *event);
 
 public slots:
     void stopGame();
+    void addPoints(quint32 points);
 
 private:
     Ui::Widget *ui;
@@ -45,6 +45,7 @@ private:
     bool running;
     QSet<int> pressedKeys;
     Plane *plane;
+    quint16 points;
 
     bool eventFilter(QObject *object, QEvent *event);
     void changeObjectsYSpeed(bool direction);

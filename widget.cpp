@@ -9,6 +9,7 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
     , running(false)
     , plane(new Plane(360, 490))
+    , points(0)
 {
     ui->setupUi(this);
 
@@ -37,7 +38,7 @@ Widget::Widget(QWidget *parent)
     enemyPlane->setScale(0.7);
     scene->addItem(enemyPlane);
 
-    Helicopter * helicopter = new Helicopter(210, 260, -1, 1);
+    Helicopter * helicopter = new Helicopter(210, -760, -1, 1);
     helicopter->setScale(0.7);
     scene->addItem(helicopter);
 
@@ -46,6 +47,12 @@ Widget::Widget(QWidget *parent)
     scene->addItem(fuel);
 
     connect(plane, &Plane::crash, this, &Widget::stopGame);
+
+    connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(bridge, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(fuel, &BaseGameObject::addPoints, this, &Widget::addPoints);
 
     scene->setFocus();
     scene->installEventFilter(this);
@@ -64,6 +71,11 @@ void Widget::initialize()
 void Widget::stopGame()
 {
     timer->stop();
+}
+
+void Widget::addPoints(quint32 value)
+{
+    points += value;
 }
 
 bool Widget::eventFilter(QObject *object, QEvent *event)

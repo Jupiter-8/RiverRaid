@@ -21,6 +21,8 @@ void Bridge::advance(int phase)
                         object->getType() == GameObjectType::BulletType
                   )
                 {
+                    if(!isDestroyed())
+                        emit addPoints(500);
                     destroyed = true;
                     speedX = 0;
                     timer->start(1);
@@ -28,6 +30,7 @@ void Bridge::advance(int phase)
                     timer->singleShot(250, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_2.png"); } );
                     timer->singleShot(500, this, [this] () { this->changePixmap(":/images/models/bridge_destroyed_1.png"); } );
                     timer->singleShot(750, this, &Bridge::deleteObject );
+
                     return;
                 }
             }

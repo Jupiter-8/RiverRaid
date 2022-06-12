@@ -5,12 +5,12 @@
 
 class River : public BaseGameObject
 {
+    Q_OBJECT
 public:
     River(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),
           QPixmap pixmap = QPixmap(":/images/models/river.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
-    void destroy();
     GameObjectType getType();
 };
 

@@ -13,8 +13,10 @@
 
 class BaseGameObject : public QObject, public QGraphicsPixmapItem
 {  
+    Q_OBJECT
 public:
-    BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent = nullptr);
+    BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform,
+                   QPixmap pixmap, QGraphicsItem *parent = nullptr);
 
     virtual GameObjectType getType() = 0;
     void destroy(qreal scale = 1.0);
@@ -34,6 +36,9 @@ protected:
 protected slots:
     void changePixmap(QString path);
     void deleteObject();
+
+signals:
+    void addPoints(quint32 points);
 };
 
 

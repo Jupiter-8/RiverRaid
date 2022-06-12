@@ -18,7 +18,10 @@ void Fuel::advance(int phase)
                 BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
                 if(object->getType() == GameObjectType::BulletType)
                 {
+                    if(!isDestroyed())
+                        emit addPoints(80);
                     destroy(0.5);
+
                     return;
                 }
             }

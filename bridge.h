@@ -5,6 +5,8 @@
 
 class Bridge : public BaseGameObject
 {
+    Q_OBJECT
+
 public:
     Bridge(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),
            QPixmap pixmap = QPixmap(":/images/models/bridge.png"), QGraphicsItem *parent = nullptr);

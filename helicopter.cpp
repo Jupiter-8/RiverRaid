@@ -29,7 +29,10 @@ void Helicopter::advance(int phase)
                         object->getType() == GameObjectType::BulletType
                        )
                 {
+                    if(!isDestroyed())
+                        emit addPoints(60);
                     destroy(0.4);
+
                     return;
                 }
             }

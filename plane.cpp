@@ -2,14 +2,13 @@
 #include "bullet.h"
 
 Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent)
+    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent), fuel(quint32(1000))
 {
 
 }
 
 void Plane::advance(int phase)
 {
-
     if(phase == 0)
     {
         if(!scene()->collidingItems(this).empty())
@@ -30,11 +29,6 @@ void Plane::advance(int phase)
             }
         }
     }
-}
-
-void Plane::destroy()
-{
-
 }
 
 GameObjectType Plane::getType()

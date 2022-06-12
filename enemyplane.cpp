@@ -26,7 +26,10 @@ void EnemyPlane::advance(int phase)
                    object->getType() == GameObjectType::BulletType
                   )
                 {
+                    if(!isDestroyed())
+                        emit addPoints(100);
                     destroy(0.5);
+
                     return;
                 }
             }
