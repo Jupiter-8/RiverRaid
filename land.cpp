@@ -8,7 +8,7 @@ Land::Land(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform,
 
 void Land::advance(int phase)
 {
-    if(phase == 0)
+    if(phase == 0 && y() < 0)
     {
         moveBy(speedX, speedY);
     }

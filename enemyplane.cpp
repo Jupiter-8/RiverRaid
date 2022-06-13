@@ -10,7 +10,7 @@ void EnemyPlane::advance(int phase)
 {
     if(phase == 0)
     {
-        if(x() == -70)
+        if(x() == -70 || y() == 600)
         {
             deleteObject();
             return;
@@ -24,15 +24,16 @@ void EnemyPlane::advance(int phase)
                 {
                     if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
-                        if(!isDestroyed())
-                            emit addPoints(100);
-                        destroy(0.5);
+                        emit addPoints(100);
+                        deleteObject();
                         static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }
                 }
             }
+            moveBy(speedX, speedY);
         }
-        moveBy(speedX, speedY);
+        else
+            moveBy(0, speedY);
     }
 }

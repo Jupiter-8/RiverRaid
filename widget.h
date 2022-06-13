@@ -32,7 +32,7 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
-    void initialize();
+    void initializeScene();
 
 public slots:
     void advance();

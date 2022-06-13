@@ -5,7 +5,7 @@ Bullet::Bullet(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transf
 {
     player = new QMediaPlayer(this->scene());
     player->setMedia(QUrl("qrc:/music/sounds/gun_shoot.wav"));
-    player->play();
+    //player->play();
 }
 
 void Bullet::advance(int phase)

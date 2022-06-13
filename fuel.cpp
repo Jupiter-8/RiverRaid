@@ -24,10 +24,8 @@ void Fuel::advance(int phase)
                 {
                     if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
-                        if(!isDestroyed())
-                            emit addPoints(80);
-                        //destroy(0.5);
-                        setPixmap(QPixmap());
+                        emit addPoints(80);
+                        deleteObject();
                         static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }

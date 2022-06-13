@@ -23,26 +23,23 @@ void Plane::advance(int phase)
             for(int i = 0; i < collidingItems.size(); i++)
             {
                 BaseGameObject *object = static_cast<BaseGameObject *>(collidingItems[i]);
-                if(!object->isDestroyed())
+                if(typeid(*(collidingItems[i])) == typeid(Land) ||
+                   typeid(*(collidingItems[i])) == typeid(Ship) ||
+                   typeid(*(collidingItems[i])) == typeid(EnemyPlane) ||
+                   typeid(*(collidingItems[i])) == typeid(Bridge) ||
+                   typeid(*(collidingItems[i])) == typeid(Helicopter)
+                )
                 {
-                    if(typeid(*(collidingItems[i])) == typeid(Land) ||
-                       typeid(*(collidingItems[i])) == typeid(Ship) ||
-                       typeid(*(collidingItems[i])) == typeid(EnemyPlane) ||
-                       typeid(*(collidingItems[i])) == typeid(Bridge) ||
-                       typeid(*(collidingItems[i])) == typeid(Helicopter)
-                    )
-                    {
-                        emit crash();
-                        changePixmap(":/images/models/plane_crashed.png");
-                        player->play();
-                    }
-                    else if(typeid(*(collidingItems[i])) == typeid(Fuel))
-                    {
-                        isRefuelling = true;
-                        fuelAmount += 15;
-                    }
-                    isRefuelling = false;
+                    emit crash();
+                    changePixmap(":/images/models/plane_crashed.png");
+                    player->play();
                 }
+                else if(typeid(*(collidingItems[i])) == typeid(Fuel))
+                {
+                    isRefuelling = true;
+                    fuelAmount += 15;
+                }
+                isRefuelling = false;
             }
         }
     }

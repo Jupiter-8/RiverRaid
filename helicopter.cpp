@@ -31,9 +31,8 @@ void Helicopter::advance(int phase)
                     }
                     else if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
-                        if(!isDestroyed())
-                            emit addPoints(60);
-                        destroy(0.4);
+                        emit addPoints(60);
+                        deleteObject();
                         static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }

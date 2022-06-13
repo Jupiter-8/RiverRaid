@@ -31,9 +31,8 @@ void Ship::advance(int phase)
                     }
                     if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
-                        if(!isDestroyed())
-                            emit addPoints(30);
-                        destroy();
+                        emit addPoints(30);
+                        deleteObject();
                         player->play();
                         static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;

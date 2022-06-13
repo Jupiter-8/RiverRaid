@@ -7,61 +7,15 @@
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
+    , scene(new QGraphicsScene(0, 0, 800, 600, this))
+    , timer(new QTimer(this))
     , running(false)
     , plane(new Plane(360, 490, 0, 1))
     , points(0)
     , speedY(1)
 {
     ui->setupUi(this);
-    scene = new QGraphicsScene(0, 0, 800, 600, this);
-    ui->graphicsView->setScene(scene);
-
-    timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
-    connect(timer, &QTimer::timeout, this, &Widget::advance);
-
-    Land * land = new Land(0, -4400, 0, speedY);
-    scene->addItem(land);
-
-    River * river = new River(0, -4400, 0, speedY);
-    scene->addItem(river);
-
-    plane->setScale(0.5);
-    scene->addItem(plane);
-
-    Bridge * bridge = new Bridge(300, -3530, 0, speedY);
-    scene->addItem(bridge);
-
-    Ship * ship1 = new Ship(160, -250, 1, speedY);
-    scene->addItem(ship1);
-
-    Ship * ship3 = new Ship(160, -1750, 1, speedY);
-    scene->addItem(ship3);
-
-    EnemyPlane * enemyPlane = new EnemyPlane(800, 300, -3, speedY);
-    enemyPlane->setScale(0.7);
-    scene->addItem(enemyPlane);
-
-    Helicopter * helicopter = new Helicopter(210, -570, -1, speedY);
-    helicopter->setScale(0.7);
-    scene->addItem(helicopter);
-
-    Fuel * fuel = new Fuel(360, -2500, 0, 1);
-    fuel->setScale(0.7);
-    scene->addItem(fuel);
-
-    connect(plane, &Plane::crash, this, &Widget::stopGame);
-    connect(plane, &Plane::noFuel, this, &Widget::stopGame);
-
-
-      connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
-      connect(enemyPlane, &BaseGameObject::addPoints, this, &Widget::addPoints);
-      connect(helicopter, &BaseGameObject::addPoints, this, &Widget::addPoints);
-      connect(bridge, &BaseGameObject::addPoints, this, &Widget::addPoints);
-      connect(fuel, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    scene->setFocus();
-    scene->installEventFilter(this);
+    initializeScene();
 }
 
 Widget::~Widget()
@@ -69,9 +23,110 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::initialize()
+void Widget::initializeScene()
 {
+    ui->graphicsView->setScene(scene);
 
+    connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
+    connect(timer, &QTimer::timeout, this, &Widget::advance);
+
+    Land * land = new Land(0, -9400, 0, speedY);
+    scene->addItem(land);
+
+    River * river = new River(0, -9400, 0, speedY);
+    scene->addItem(river);
+
+    plane->setScale(0.5);
+    scene->addItem(plane);
+    connect(plane, &Plane::crash, this, &Widget::stopGame);
+    connect(plane, &Plane::noFuel, this, &Widget::stopGame);
+
+    Ship * ship1 = new Ship(160, 150, 1, speedY);
+    scene->addItem(ship1);
+    connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Ship * ship2 = new Ship(210, -3000, 1, speedY);
+    scene->addItem(ship2);
+    connect(ship2, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Ship * ship3 = new Ship(220, -1700, 1, speedY);
+    scene->addItem(ship3);
+    connect(ship3, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Ship * ship4 = new Ship(280, -2400, 1, speedY);
+    scene->addItem(ship4);
+    connect(ship4, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Helicopter * helicopter1 = new Helicopter(210, 0, -1, speedY);
+    helicopter1->setScale(0.7);
+    scene->addItem(helicopter1);
+    connect(helicopter1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Helicopter * helicopter2 = new Helicopter(270, -450, -1, speedY);
+    helicopter2->setScale(0.7);
+    scene->addItem(helicopter2);
+    connect(helicopter2, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Helicopter * helicopter3 = new Helicopter(210, -600, -1, speedY);
+    helicopter3->setScale(0.7);
+    scene->addItem(helicopter3);
+    connect(helicopter3, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Helicopter * helicopter4 = new Helicopter(260, -4200, -1, speedY);
+    helicopter4->setScale(0.7);
+    scene->addItem(helicopter4);
+    connect(helicopter4, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Helicopter * helicopter5 = new Helicopter(300, -4400, -1, speedY);
+    helicopter5->setScale(0.7);
+    scene->addItem(helicopter5);
+    connect(helicopter5, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Helicopter * helicopter6 = new Helicopter(290, -5000, -1, speedY);
+    helicopter6->setScale(0.7);
+    scene->addItem(helicopter6);
+    connect(helicopter6, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Helicopter * helicopter7 = new Helicopter(290, -1500, -1, speedY);
+    helicopter7->setScale(0.7);
+    scene->addItem(helicopter7);
+    connect(helicopter7, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Helicopter * helicopter8 = new Helicopter(230, -2500, -1, speedY);
+    helicopter8->setScale(0.7);
+    scene->addItem(helicopter8);
+    connect(helicopter8, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Fuel * fuel1 = new Fuel(360, -1050, 0, 1);
+    fuel1->setScale(0.7);
+    scene->addItem(fuel1);
+    connect(fuel1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    EnemyPlane * enemyPlane1 = new EnemyPlane(800, -3600, -3, speedY);
+    enemyPlane1->setScale(0.7);
+    scene->addItem(enemyPlane1);
+    connect(enemyPlane1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+//    EnemyPlane * enemyPlane2 = new EnemyPlane(800, -2000, -3, speedY);
+//    enemyPlane2->setScale(0.7);
+//    scene->addItem(enemyPlane2);
+//    connect(enemyPlane2, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+//    EnemyPlane * enemyPlane2 = new EnemyPlane(800, -3200, -3, speedY);
+//    enemyPlane2->setScale(0.7);
+//    scene->addItem(enemyPlane2);
+//    connect(enemyPlane2, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Bridge * bridge1 = new Bridge(300, -3529, 0, speedY);
+    scene->addItem(bridge1);
+    connect(bridge1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    Bridge * bridge2 = new Bridge(300, -8529, 0, speedY);
+    scene->addItem(bridge2);
+    connect(bridge2, &BaseGameObject::addPoints, this, &Widget::addPoints);
+
+    scene->setFocus();
+    scene->installEventFilter(this);
 }
 
 void Widget::advance()
