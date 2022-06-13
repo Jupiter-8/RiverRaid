@@ -8,10 +8,12 @@
 #include <QTransform>
 #include <QTimer>
 #include <QDebug>
+#include <QMediaPlayer>
 
 class BaseGameObject : public QObject, public QGraphicsPixmapItem
 {  
     Q_OBJECT
+
 public:
     BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform,
                    QPixmap pixmap, QGraphicsItem *parent = nullptr);
@@ -29,6 +31,7 @@ protected:
     QTransform transform;
     bool destroyed;
     QTimer *timer;
+    QMediaPlayer *player;
 
 public slots:
     void deleteObject();

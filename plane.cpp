@@ -4,7 +4,8 @@
 Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent), fuelAmount(10000), isRefuelling(false)
 {
-
+    player = new QMediaPlayer(this->scene());
+    player->setMedia(QUrl("qrc:/music/sounds/crash.mp3"));
 }
 
 void Plane::advance(int phase)
@@ -33,6 +34,7 @@ void Plane::advance(int phase)
                     {
                         emit crash();
                         changePixmap(":/images/models/plane_crashed.png");
+                        player->play();
                     }
                     else if(typeid(*(collidingItems[i])) == typeid(Fuel))
                     {

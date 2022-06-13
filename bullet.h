@@ -9,9 +9,6 @@ class Bullet : public BaseGameObject
 {
     Q_OBJECT
 
-private:
-    QMediaPlayer *player;
-
 public:
     Bullet(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),
            QPixmap pixmap = QPixmap(":/images/models/bullet.png"), QGraphicsItem *parent = nullptr);
