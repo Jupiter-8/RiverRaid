@@ -19,5 +19,6 @@
     <qresource prefix="/music">
         <file>sounds/gun_shoot.wav</file>
         <file>sounds/crash.mp3</file>
+        <file>sounds/explosion.wav</file>
     </qresource>
 </RCC>
