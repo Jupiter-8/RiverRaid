@@ -1,12 +1,10 @@
 #include "basegameobject.h"
 
-BaseGameObject::BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
-    : QGraphicsPixmapItem(pixmap, parent), speedX(speedX), speedY(speedY), transform(transform), timer(new QTimer(this))
+BaseGameObject::BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
+    : QGraphicsPixmapItem(pixmap, parent), speedX(speedX), speedY(speedY), timer(new QTimer(this))
 {
-    setFlag(QGraphicsItem::ItemIsMovable);
     setX(x);
     setY(y);
-    setTransform(transform);
 }
 
 void BaseGameObject::setSpeedX(quint8 value)

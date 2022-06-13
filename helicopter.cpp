@@ -1,9 +1,10 @@
 #include "helicopter.h"
 
-Helicopter::Helicopter(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent)
+Helicopter::Helicopter(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent)
 {
-
+    player = new QMediaPlayer(this->scene());
+    player->setMedia(QUrl("qrc:/music/sounds/explosion.wav"));
 }
 
 void Helicopter::advance(int phase)
@@ -24,6 +25,7 @@ void Helicopter::advance(int phase)
                 {
                     if(typeid(*(collidingItems[i])) == typeid(Land))
                     {
+                        QTransform transform;
                         transform.rotate(180, Qt::YAxis);
                         transform.translate(-65,0);
                         setTransform(transform);
@@ -33,6 +35,7 @@ void Helicopter::advance(int phase)
                     {
                         emit addPoints(60);
                         deleteObject();
+                        player->play();
                         static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }

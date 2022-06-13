@@ -1,8 +1,8 @@
 #include "plane.h"
 #include "bullet.h"
 
-Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent), fuelAmount(10000), isRefuelling(false)
+Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), fuelAmount(quint32(10000)), isRefuelling(false)
 {
     player = new QMediaPlayer(this->scene());
     player->setMedia(QUrl("qrc:/music/sounds/crash.mp3"));
@@ -12,9 +12,9 @@ void Plane::advance(int phase)
 {
     if(phase == 0)
     {
-        if(!isRefuelling && fuelAmount - speedY > 0)
-            fuelAmount -= speedY;
-        else if(fuelAmount - speedY <= 0)
+        if(!isRefuelling && fuelAmount - (quint32)(speedY * 2) >= (quint32)(speedY * 2))
+            fuelAmount -= speedY * 2;
+        else if(!isRefuelling && fuelAmount - (quint32)(speedY * 2) < (quint32)(speedY * 2))
             emit noFuel();
 
         QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
@@ -37,7 +37,10 @@ void Plane::advance(int phase)
                 else if(typeid(*(collidingItems[i])) == typeid(Fuel))
                 {
                     isRefuelling = true;
-                    fuelAmount += 15;
+                    if(fuelAmount + 200 <= 9800)
+                        fuelAmount += 200;
+                    else
+                        fuelAmount += 10000 - fuelAmount;
                 }
                 isRefuelling = false;
             }
@@ -45,7 +48,7 @@ void Plane::advance(int phase)
     }
 }
 
-uint Plane::getFuelAmount()
+quint32 Plane::getFuelAmount()
 {
     return fuelAmount;
 }

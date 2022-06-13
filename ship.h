@@ -11,10 +11,11 @@ class Ship : public BaseGameObject
     Q_OBJECT
 
 public:
-    Ship(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),
+    Ship(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
          QPixmap pixmap = QPixmap(":/images/models/ship.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
+
 };
 
 #endif // SHIP_H

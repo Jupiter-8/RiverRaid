@@ -1,7 +1,8 @@
 #include "ship.h"
+#include "widget.h"
 
-Ship::Ship(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent)
+Ship::Ship(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent)
 {
     player = new QMediaPlayer(this->scene());
     player->setMedia(QUrl("qrc:/music/sounds/explosion.wav"));
@@ -25,8 +26,9 @@ void Ship::advance(int phase)
                 {
                     if(typeid(*(collidingItems[i])) == typeid(Land))
                     {
+                        QTransform transform;
                         transform.rotate(180, Qt::YAxis);
-                        this->setTransform(transform);
+                        setTransform(transform);
                         speedX = -speedX;
                     }
                     if(typeid(*(collidingItems[i])) == typeid(Bullet))

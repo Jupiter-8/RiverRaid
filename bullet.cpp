@@ -1,11 +1,11 @@
 #include "bullet.h"
 
-Bullet::Bullet(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent)
+Bullet::Bullet(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent)
 {
     player = new QMediaPlayer(this->scene());
     player->setMedia(QUrl("qrc:/music/sounds/gun_shoot.wav"));
-    //player->play();
+    player->play();
 }
 
 void Bullet::advance(int phase)

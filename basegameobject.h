@@ -15,7 +15,7 @@ class BaseGameObject : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform,
+    BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY,
                    QPixmap pixmap, QGraphicsItem *parent = nullptr);
 
     void setSpeedX(quint8 value);
@@ -27,7 +27,6 @@ public:
 protected:
     qint8 speedX;
     qint8 speedY;
-    QTransform transform;
     QTimer *timer;
     QMediaPlayer *player;
 

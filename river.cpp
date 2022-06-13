@@ -1,16 +1,15 @@
 #include "river.h"
 
-River::River(qreal x, qreal y, quint8 speedX, quint8 speedY, QTransform transform, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, transform, pixmap, parent)
+River::River(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent)
 {
 
 }
 
 void River::advance(int phase)
 {
-    if(phase == 0 && y() < 0)
+    if(phase == 0 && y() < -10)
     {
-         qDebug() << y();
          moveBy(speedX, speedY);
     }
 }

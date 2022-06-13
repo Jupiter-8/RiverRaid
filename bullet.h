@@ -10,7 +10,7 @@ class Bullet : public BaseGameObject
     Q_OBJECT
 
 public:
-    Bullet(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0, QTransform transform = QTransform(),
+    Bullet(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
            QPixmap pixmap = QPixmap(":/images/models/bullet.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
