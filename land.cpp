@@ -9,9 +9,7 @@ Land::Land(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGrap
 void Land::advance(int phase)
 {
     if(phase == 0 && y() < -10)
-    {
         moveBy(speedX, speedY);
-    }
     if(y() > -50)
         emit finishGame();
 }
