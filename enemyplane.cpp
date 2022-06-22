@@ -27,7 +27,7 @@ void EnemyPlane::advance(int phase)
                         emit addPoints(100);
                         deleteObject();
                         mediaPlayer->play();
-                        static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }
                 }

@@ -223,7 +223,7 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
 
 void Widget::changeObjectsYSpeed(bool direction)
 {
-    if(direction && speedY < 20)
+    if(direction && speedY < 5)
         speedY += 1;
     else if(!direction && speedY > 1)
         speedY -= 1;
@@ -232,9 +232,7 @@ void Widget::changeObjectsYSpeed(bool direction)
     for(int i = 0; i < objects.size(); i++)
     {
         if(typeid(*(objects[i])) != typeid(Bullet))
-        {
-            static_cast<BaseGameObject *>(objects[i])->setSpeedY(speedY);
-        }
+            dynamic_cast<BaseGameObject *>(objects[i])->setSpeedY(speedY);
     }
 
     ui->speedLabel2->setText(QString::number(speedY));

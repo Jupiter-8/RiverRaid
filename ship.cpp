@@ -35,7 +35,7 @@ void Ship::advance(int phase)
                         emit addPoints(30);
                         deleteObject();
                         mediaPlayer->play();
-                        static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }
                 }

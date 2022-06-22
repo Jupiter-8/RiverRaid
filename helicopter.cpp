@@ -35,7 +35,7 @@ void Helicopter::advance(int phase)
                         emit addPoints(60);
                         deleteObject();
                         mediaPlayer->play();
-                        static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }
                 }

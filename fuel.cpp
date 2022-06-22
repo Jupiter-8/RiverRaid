@@ -27,7 +27,7 @@ void Fuel::advance(int phase)
                         emit addPoints(80);
                         deleteObject();
                         mediaPlayer->play();
-                        static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }
                 }

@@ -22,7 +22,7 @@ void Bridge::advance(int phase)
                         emit addPoints(500);
                         deleteObject();
                         mediaPlayer->play();
-                        static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }
                 }
