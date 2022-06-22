@@ -28,7 +28,7 @@ protected:
     qint8 speedX;
     qint8 speedY;
     QTimer *timer;
-    QMediaPlayer *player;
+    QMediaPlayer *mediaPlayer;
 
 protected slots:
     void changePixmap(QString path);

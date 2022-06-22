@@ -4,8 +4,9 @@
 Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, pixmap, parent), fuelAmount(quint32(10000)), isRefuelling(false)
 {
-    player = new QMediaPlayer(this->scene());
-    player->setMedia(QUrl("qrc:/music/sounds/crash.mp3"));
+    mediaPlayer->setMedia(QUrl("qrc:/music/sounds/crash.mp3"));
+    mediaPlayer2 = new QMediaPlayer(this->scene());
+    mediaPlayer2->setMedia(QUrl("qrc:/music/sounds/refuel.wav"));
 }
 
 void Plane::advance(int phase)
@@ -29,20 +30,26 @@ void Plane::advance(int phase)
                    typeid(*(collidingItems[i])) == typeid(Bridge) ||
                    typeid(*(collidingItems[i])) == typeid(Helicopter)
                 )
-                {
+                { 
                     emit crash();
                     changePixmap(":/images/models/plane_crashed.png");
-                    player->play();
+                    mediaPlayer->play();
                 }
                 else if(typeid(*(collidingItems[i])) == typeid(Fuel))
                 {
-                    isRefuelling = true;
+                    if(!isRefuelling)
+                    {
+                        isRefuelling = true;
+                        mediaPlayer2->play();
+                    }
+
                     if(fuelAmount + 200 <= 9800)
                         fuelAmount += 200;
                     else
                         fuelAmount += 10000 - fuelAmount;
                 }
-                isRefuelling = false;
+                else
+                    isRefuelling = false;
             }
         }
     }

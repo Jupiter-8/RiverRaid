@@ -37,11 +37,6 @@ void Widget::initializeScene()
     River * river = new River(0, -9400, 0, speedY);
     scene->addItem(river);
 
-    plane->setScale(0.5);
-    scene->addItem(plane);
-    connect(plane, &Plane::crash, this, &Widget::stopGame);
-    connect(plane, &Plane::noFuel, this, &Widget::stopGame);
-
     Ship * ship1 = new Ship(160, -150, 1, speedY);
     scene->addItem(ship1);
     connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
@@ -152,6 +147,11 @@ void Widget::initializeScene()
     scene->addItem(bridge3);
     connect(bridge3, &BaseGameObject::addPoints, this, &Widget::addPoints);
 
+    plane->setScale(0.5);
+    scene->addItem(plane);
+    connect(plane, &Plane::crash, this, &Widget::stopGame);
+    connect(plane, &Plane::noFuel, this, &Widget::stopGame);
+
     scene->setFocus();
     scene->installEventFilter(this);
 }
@@ -186,7 +186,7 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
             timer->start(10);
     }
 
-    if(event->type() == QEvent::KeyPress /*&& !keyEvent->isAutoRepeat()*/)
+    if(event->type() == QEvent::KeyPress)
     {
         pressedKeys += ((QKeyEvent*)event)->key();
 
@@ -213,7 +213,7 @@ bool Widget::eventFilter(QObject *object, QEvent *event)
             scene->addItem(bullet);
         }
     }
-    else if(event->type() == QEvent::KeyRelease /*&& !keyEvent->isAutoRepeat()*/)
+    else if(event->type() == QEvent::KeyRelease)
     {
         pressedKeys -= ((QKeyEvent*)event)->key();
     }

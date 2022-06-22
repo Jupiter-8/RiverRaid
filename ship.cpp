@@ -4,8 +4,7 @@
 Ship::Ship(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, pixmap, parent)
 {
-    player = new QMediaPlayer(this->scene());
-    player->setMedia(QUrl("qrc:/music/sounds/explosion.wav"));
+    mediaPlayer->setMedia(QUrl("qrc:/music/sounds/explosion.wav"));
 }
 
 void Ship::advance(int phase)
@@ -35,7 +34,7 @@ void Ship::advance(int phase)
                     {
                         emit addPoints(30);
                         deleteObject();
-                        player->play();
+                        mediaPlayer->play();
                         static_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         return;
                     }

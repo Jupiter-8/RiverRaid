@@ -15,5 +15,6 @@
         <file>sounds/gun_shoot.wav</file>
         <file>sounds/crash.mp3</file>
         <file>sounds/explosion.wav</file>
+        <file>sounds/refuel.wav</file>
     </qresource>
 </RCC>

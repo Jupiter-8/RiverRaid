@@ -3,6 +3,8 @@
 BaseGameObject::BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
     : QGraphicsPixmapItem(pixmap, parent), speedX(speedX), speedY(speedY), timer(new QTimer(this))
 {
+    mediaPlayer = new QMediaPlayer(this->scene());
+    mediaPlayer->setVolume(5);
     setX(x);
     setY(y);
 }
