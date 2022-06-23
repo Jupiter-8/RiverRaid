@@ -11,5 +11,5 @@ void Land::advance(int phase)
     if(phase == 0 && y() < -10)
         moveBy(speedX, speedY);
     if(y() > -50)
-        emit finishGame();
+        emit gameOver(QString("     You have won!"));
 }

@@ -16,7 +16,7 @@ void Plane::advance(int phase)
         if(!isRefuelling && fuelAmount - (quint32)(speedY * 2) >= (quint32)(speedY * 2))
             fuelAmount -= speedY * 2;
         else if(!isRefuelling && fuelAmount - (quint32)(speedY * 2) < (quint32)(speedY * 2))
-            emit noFuel();
+            emit gameOver(QString("        Out of fuel!"));
 
         QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
         if(!collidingItems.empty())
@@ -31,7 +31,7 @@ void Plane::advance(int phase)
                    typeid(*(collidingItems[i])) == typeid(Helicopter)
                 )
                 { 
-                    emit crash();
+                    emit gameOver(QString("  You have crashed!  "));
                     changePixmap(":/images/models/plane_crashed.png");
                     mediaPlayer->play();
                 }

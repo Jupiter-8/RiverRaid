@@ -32,7 +32,7 @@ void Widget::initializeScene()
 
     Land * land = new Land(0, -9400, 0, speedY);
     scene->addItem(land);
-    connect(land, &Land::finishGame, this, &Widget::stopGame);
+    connect(land, &Land::gameOver, this, &Widget::stopGame);
 
     River * river = new River(0, -9400, 0, speedY);
     scene->addItem(river);
@@ -149,8 +149,7 @@ void Widget::initializeScene()
 
     plane->setScale(0.5);
     scene->addItem(plane);
-    connect(plane, &Plane::crash, this, &Widget::stopGame);
-    connect(plane, &Plane::noFuel, this, &Widget::stopGame);
+    //connect(plane, &Plane::gameOver, this, &Widget::stopGame);
 
     scene->setFocus();
     scene->installEventFilter(this);
@@ -161,10 +160,15 @@ void Widget::advance()
     ui->fuelLabel2->setText(QString::number((plane->getFuelAmount() / 100)) + " %");
 }
 
-void Widget::stopGame()
+void Widget::stopGame(QString message)
 {
     timer->stop();
-    qDebug() << "Game Over";
+    QGraphicsTextItem *text = new QGraphicsTextItem();
+    text->setDefaultTextColor(QColor(232, 232, 92));
+    text->setFont(QFont("Arial", 60));
+    text->setPos(20, 200);
+    text->setPlainText(message);
+    scene->addItem(text);
 }
 
 void Widget::addPoints(quint32 value)
@@ -237,4 +241,3 @@ void Widget::changeObjectsYSpeed(bool direction)
 
     ui->speedLabel2->setText(QString::number(speedY));
 }
-

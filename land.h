@@ -13,7 +13,7 @@ public:
     void advance(int phase);
 
 signals:
-    void finishGame();
+    void gameOver(QString message);
 };
 
 #endif // LAND_H

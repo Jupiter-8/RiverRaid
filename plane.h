@@ -31,8 +31,7 @@ public:
     uint getFuelAmount();
 
 signals:
-    void crash();
-    void noFuel();
+    void gameOver(QString message);
 };
 
 #endif // PLANE_H

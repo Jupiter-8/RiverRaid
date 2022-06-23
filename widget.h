@@ -36,7 +36,7 @@ public:
 
 public slots:
     void advance();
-    void stopGame();
+    void stopGame(QString message);
     void addPoints(quint32 points);
 
 private:
