@@ -5,9 +5,14 @@
 #include "land.h"
 #include "bullet.h"
 
+#include <QTransform>
+
 class Helicopter : public BaseGameObject
 {
     Q_OBJECT
+
+private:
+    QTransform transform;
 
 public:
     Helicopter(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,

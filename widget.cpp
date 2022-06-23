@@ -149,7 +149,7 @@ void Widget::initializeScene()
 
     plane->setScale(0.5);
     scene->addItem(plane);
-    //connect(plane, &Plane::gameOver, this, &Widget::stopGame);
+    connect(plane, &Plane::gameOver, this, &Widget::stopGame);
 
     scene->setFocus();
     scene->installEventFilter(this);
