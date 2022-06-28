@@ -17,6 +17,7 @@ SOURCES += \
     helicopter.cpp \
     land.cpp \
     main.cpp \
+    mainmenu.cpp \
     plane.cpp \
     river.cpp \
     ship.cpp \
@@ -30,12 +31,14 @@ HEADERS += \
     fuel.h \
     helicopter.h \
     land.h \
+    mainmenu.h \
     plane.h \
     river.h \
     ship.h \
     widget.h
 
 FORMS += \
+    mainmenu.ui \
     widget.ui
 
 # Default rules for deployment.

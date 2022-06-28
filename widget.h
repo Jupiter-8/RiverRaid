@@ -19,6 +19,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QTransform>
+#include <QApplication>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -29,7 +30,7 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
-    Widget(QWidget *parent = nullptr);
+    Widget(QApplication *app, QWidget *parent = nullptr);
     ~Widget();
 
     void initializeScene();
@@ -48,8 +49,10 @@ private:
     Plane *plane;
     quint16 points;
     quint8 speedY;
+    QApplication *app;
 
     bool eventFilter(QObject *object, QEvent *event);
     void changeObjectsYSpeed(bool direction);
+    void closeEvent(QCloseEvent *event);
 };
 #endif // WIDGET_H

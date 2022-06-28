@@ -1,10 +1,11 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include "bullet.h"
+#include "mainmenu.h"
 
 #include <QDebug>
 
-Widget::Widget(QWidget *parent)
+Widget::Widget(QApplication *app, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
     , scene(new QGraphicsScene(0, 0, 800, 600, this))
@@ -13,6 +14,7 @@ Widget::Widget(QWidget *parent)
     , plane(new Plane(360, 490, 0, 1))
     , points(0)
     , speedY(1)
+    , app(app)
 {
     ui->setupUi(this);
     initializeScene();
@@ -240,4 +242,13 @@ void Widget::changeObjectsYSpeed(bool direction)
     }
 
     ui->speedLabel2->setText(QString::number(speedY));
+}
+
+void Widget::closeEvent(QCloseEvent *event)
+{
+    timer->stop();
+    MainMenu *m = new MainMenu(app);
+    QObject::connect(m, &MainMenu::quitGame, app, &QApplication::quit);
+    m->show();
+    this->destroy();
 }
