@@ -23,6 +23,8 @@ private:
     bool isRefuelling;
     QMediaPlayer *mediaPlayer2;
 
+    void showGameOverDialog();
+
 public:
     Plane(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
           QPixmap pixmap = QPixmap(":/images/models/plane.png"), QGraphicsItem *parent = nullptr);

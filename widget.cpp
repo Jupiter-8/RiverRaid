@@ -157,6 +157,16 @@ void Widget::initializeScene()
     scene->installEventFilter(this);
 }
 
+void Widget::destroyWidget()
+{
+    this->destroy();
+}
+
+void Widget::closeWidget()
+{
+    closeEvent(nullptr);
+}
+
 void Widget::advance()
 {
     ui->fuelLabel2->setText(QString::number((plane->getFuelAmount() / 100)) + " %");

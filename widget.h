@@ -34,6 +34,8 @@ public:
     ~Widget();
 
     void initializeScene();
+    void destroyWidget();
+    void closeWidget();
 
 public slots:
     void advance();
