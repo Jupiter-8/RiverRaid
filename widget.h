@@ -20,6 +20,8 @@
 #include <QKeyEvent>
 #include <QTransform>
 #include <QApplication>
+#include <QMessageBox>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -34,8 +36,7 @@ public:
     ~Widget();
 
     void initializeScene();
-    void destroyWidget();
-    void closeWidget();
+    void showGameOverDialog(QString message);
 
 public slots:
     void advance();

@@ -2,32 +2,6 @@
 #include "bullet.h"
 #include "widget.h"
 
-#include <QApplication>
-#include <QMessageBox>
-#include <QPushButton>
-#include <QWidget>
-
-void Plane::showGameOverDialog()
-{
-    QMessageBox msgBox;
-    msgBox.setText("Game Over!");
-    QPushButton *playAgainBtn = msgBox.addButton("Play again", QMessageBox::NoRole);
-    QPushButton *showMenuBtn = msgBox.addButton("Show main menu", QMessageBox::NoRole);
-    msgBox.exec();
-
-    QApplication *app = dynamic_cast<QApplication*>(QApplication::instance());
-    Widget *widget = dynamic_cast<Widget*>(app->activeWindow());
-
-    if(msgBox.clickedButton() == playAgainBtn)
-    {
-        widget->destroyWidget();
-        widget = new Widget(app);
-        widget->show();
-    }
-    else if(msgBox.clickedButton() == showMenuBtn)
-        widget->closeWidget();
-}
-
 Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, pixmap, parent), fuelAmount(quint32(10000)), isRefuelling(false)
 {
@@ -45,7 +19,6 @@ void Plane::advance(int phase)
         else if(!isRefuelling && fuelAmount - (quint32)(speedY * 2) < (quint32)(speedY * 2))
         {
             emit gameOver(QString("        Out of fuel!"));
-            showGameOverDialog();
         }
 
         QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
@@ -61,10 +34,9 @@ void Plane::advance(int phase)
                    typeid(*(collidingItems[i])) == typeid(Helicopter)
                 )
                 { 
-                    emit gameOver(QString("  You have crashed!  "));
                     changePixmap(":/images/models/plane_crashed.png");
                     mediaPlayer->play();
-                    showGameOverDialog();
+                    emit gameOver(QString("  You have crashed!  "));
                 }
                 else if(typeid(*(collidingItems[i])) == typeid(Fuel))
                 {

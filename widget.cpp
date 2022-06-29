@@ -157,14 +157,23 @@ void Widget::initializeScene()
     scene->installEventFilter(this);
 }
 
-void Widget::destroyWidget()
+void Widget::showGameOverDialog(QString message)
 {
-    this->destroy();
-}
+    QMessageBox msgBox;
+    msgBox.setText(message);
+    QPushButton *playAgainBtn = msgBox.addButton("Play again", QMessageBox::NoRole);
+    QPushButton *showMenuBtn = msgBox.addButton("Show main menu", QMessageBox::NoRole);
+    msgBox.exec();
 
-void Widget::closeWidget()
-{
-    closeEvent(nullptr);
+    if(msgBox.clickedButton() == playAgainBtn)
+    {
+
+        Widget *widget = new Widget(app);
+        widget->show();
+        this->destroy();
+    }
+    else if(msgBox.clickedButton() == showMenuBtn)
+        closeEvent(nullptr);
 }
 
 void Widget::advance()
@@ -181,6 +190,7 @@ void Widget::stopGame(QString message)
     text->setPos(20, 200);
     text->setPlainText(message);
     scene->addItem(text);
+    showGameOverDialog(message);
 }
 
 void Widget::addPoints(quint32 value)
