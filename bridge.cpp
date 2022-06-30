@@ -3,7 +3,6 @@
 Bridge::Bridge(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, pixmap, parent)
 {
-    mediaPlayer->setMedia(QUrl("qrc:/music/sounds/explosion.wav"));
 }
 
 void Bridge::advance(int phase)
@@ -20,9 +19,9 @@ void Bridge::advance(int phase)
                     if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
                         emit addPoints(500);
-                        deleteObject();
-                        mediaPlayer->play();
+                        emit playSound(QUrl("qrc:/music/sounds/explosion.wav"), 5);
                         dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        deleteObject();
                         return;
                     }
                 }

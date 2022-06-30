@@ -14,6 +14,9 @@ public:
            QPixmap pixmap = QPixmap(":/images/models/bullet.png"), QGraphicsItem *parent = nullptr);
 
     void advance(int phase);
+
+private:
+    QMediaPlayer *mediaPlayer;
 };
 
 #endif // BULLET_H

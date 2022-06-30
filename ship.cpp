@@ -4,7 +4,6 @@
 Ship::Ship(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, pixmap, parent), transform(QTransform())
 {
-    mediaPlayer->setMedia(QUrl("qrc:/music/sounds/explosion.wav"));
 }
 
 void Ship::advance(int phase)
@@ -31,10 +30,10 @@ void Ship::advance(int phase)
                     }
                     if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
-                        emit addPoints(30);
-                        deleteObject();
-                        mediaPlayer->play();
+                        emit addPoints(60);
+                        emit playSound(QUrl("qrc:/music/sounds/explosion.wav"), 5);
                         dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        deleteObject();
                         return;
                     }
                 }

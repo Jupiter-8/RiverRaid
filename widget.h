@@ -42,6 +42,7 @@ public slots:
     void advance();
     void stopGame(QString message);
     void addPoints(quint32 points);
+    void playSound(QUrl media, int volume);
 
 private:
     Ui::Widget *ui;

@@ -3,7 +3,6 @@
 Helicopter::Helicopter(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, pixmap, parent), transform(QTransform())
 {
-    mediaPlayer->setMedia(QUrl("qrc:/music/sounds/explosion.wav"));
 }
 
 void Helicopter::advance(int phase)
@@ -24,7 +23,6 @@ void Helicopter::advance(int phase)
                 {
                     if(typeid(*(collidingItems[i])) == typeid(Land))
                     {
-
                         transform.rotate(180, Qt::YAxis);
                         transform.translate(-65,0);
                         setTransform(transform);
@@ -33,9 +31,9 @@ void Helicopter::advance(int phase)
                     else if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
                         emit addPoints(60);
-                        deleteObject();
-                        mediaPlayer->play();
+                        emit playSound(QUrl("qrc:/music/sounds/explosion.wav"), 5);
                         dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
+                        deleteObject();
                         return;
                     }
                 }

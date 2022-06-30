@@ -21,7 +21,6 @@ class Plane : public BaseGameObject
 private:
     quint32 fuelAmount;
     bool isRefuelling;
-    QMediaPlayer *mediaPlayer2;
 
 public:
     Plane(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,

@@ -8,7 +8,7 @@
 #include <QTransform>
 #include <QTimer>
 #include <QDebug>
-#include <QMediaPlayer>
+#include <QUrl>
 
 class BaseGameObject : public QObject, public QGraphicsPixmapItem
 {  
@@ -28,13 +28,13 @@ protected:
     qint8 speedX;
     qint8 speedY;
     QTimer *timer;
-    QMediaPlayer *mediaPlayer;
 
 protected slots:
     void changePixmap(QString path);
 
 signals:
     void addPoints(quint32 points);
+    void playSound(QUrl media, int volume);
 };
 
 

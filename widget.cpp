@@ -71,6 +71,7 @@ void Widget::initializeScene()
     helicopter1->setScale(0.7);
     scene->addItem(helicopter1);
     connect(helicopter1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    connect(helicopter1, &BaseGameObject::playSound, this, &Widget::playSound);
 
     Helicopter * helicopter2 = new Helicopter(270, -450, -1, speedY);
     helicopter2->setScale(0.7);
@@ -152,6 +153,7 @@ void Widget::initializeScene()
     plane->setScale(0.5);
     scene->addItem(plane);
     connect(plane, &Plane::gameOver, this, &Widget::stopGame);
+    connect(plane, &Plane::playSound, this, &Widget::playSound);
 
     scene->setFocus();
     scene->installEventFilter(this);
@@ -197,6 +199,14 @@ void Widget::addPoints(quint32 value)
 {
     points += value;
     ui->pointsLabel2->setText(QString::number(points));
+}
+
+void Widget::playSound(QUrl media, int volume)
+{
+    QMediaPlayer *mediaPlayer = new QMediaPlayer();
+    mediaPlayer->setMedia(media);
+    mediaPlayer->setVolume(volume);
+    mediaPlayer->play();
 }
 
 bool Widget::eventFilter(QObject *object, QEvent *event)
