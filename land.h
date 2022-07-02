@@ -12,6 +12,9 @@ public:
 
     void advance(int phase);
 
+private:
+    bool isGameOver;
+
 signals:
     void gameOver(QString message);
 };

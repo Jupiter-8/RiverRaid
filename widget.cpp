@@ -122,7 +122,6 @@ void Widget::showGameOverDialog(QString message)
 
     if(msgBox.clickedButton() == playAgainBtn)
     {
-
         Widget *widget = new Widget(app);
         widget->show();
         this->destroy();
