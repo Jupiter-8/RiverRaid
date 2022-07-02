@@ -15,6 +15,6 @@ void Land::advance(int phase)
     {
         m_isGameOver = true;
         emit playSound(QUrl("qrc:/music/sounds/game_end.wav"), 30);
-        emit gameOver(QString("     You have won!"));
+        emit gameOver(QString("  You have won!"));
     }
 }

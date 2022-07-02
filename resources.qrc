@@ -18,4 +18,7 @@
         <file>sounds/refuel.wav</file>
         <file>sounds/game_end.wav</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>fonts/visitor1.ttf</file>
+    </qresource>
 </RCC>

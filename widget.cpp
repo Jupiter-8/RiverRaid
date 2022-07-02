@@ -73,37 +73,37 @@ void Widget::initializeScene()
         ObjectDescription(300, -4535, 0, m_speedY, ObjectType::BRIDGE)
     };
 
-    for(auto &obj : objects)
-    {
-        BaseGameObject *object = nullptr;
-        switch(obj.m_type)
-        {
-            case ObjectType::SHIP:
-                object = new Ship(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
-                break;
-            case ObjectType::HELICOPTER:
-                object = new Helicopter(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
-                object->setScale(0.7);
-                break;
-            case ObjectType::ENEMYPLANE:
-                object = new EnemyPlane(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
-                object->setScale(0.7);
-                break;
-            case ObjectType::FUEL:
-                object = new Fuel(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
-                object->setScale(0.7);
-                break;
-            case ObjectType::BRIDGE:
-                object = new Bridge(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
-                break;
-            default:
-                break;
-        }
+//    for(auto &obj : objects)
+//    {
+//        BaseGameObject *object = nullptr;
+//        switch(obj.m_type)
+//        {
+//            case ObjectType::SHIP:
+//                object = new Ship(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
+//                break;
+//            case ObjectType::HELICOPTER:
+//                object = new Helicopter(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
+//                object->setScale(0.7);
+//                break;
+//            case ObjectType::ENEMYPLANE:
+//                object = new EnemyPlane(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
+//                object->setScale(0.7);
+//                break;
+//            case ObjectType::FUEL:
+//                object = new Fuel(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
+//                object->setScale(0.7);
+//                break;
+//            case ObjectType::BRIDGE:
+//                object = new Bridge(obj.m_x, obj.m_y, obj.m_speedX, obj.m_speedY);
+//                break;
+//            default:
+//                break;
+//        }
 
-        m_scene->addItem(object);
-        connect(object, &BaseGameObject::addPoints, this, &Widget::addPoints);
-        connect(object, &BaseGameObject::playSound, this, &Widget::playSound);
-    }
+//        m_scene->addItem(object);
+//        connect(object, &BaseGameObject::addPoints, this, &Widget::addPoints);
+//        connect(object, &BaseGameObject::playSound, this, &Widget::playSound);
+//    }
 
     m_plane->setScale(0.5);
     m_scene->addItem(m_plane);
@@ -146,8 +146,8 @@ void Widget::stopGame(const QString &message)
     m_timer->stop();
     QGraphicsTextItem *text = new QGraphicsTextItem();
     text->setDefaultTextColor(QColor(232, 232, 92));
-    text->setFont(QFont("Arial", 60));
-    text->setPos(20, 200);
+    text->setFont(QFont("Visitor TT1 BRK", 60));
+    text->setPos(5, 200);
     text->setPlainText(message);
     m_scene->addItem(text);
     showGameOverDialog(message);

@@ -17,7 +17,7 @@ void Plane::advance(int phase)
         }
         else if(!m_isRefueling && m_fuelAmount - (quint32)(m_speedY * 2) < (quint32)(m_speedY * 2))
         {
-            emit gameOver(QString("        Out of fuel!"));
+            emit gameOver(QString(" Out of the fuel!"));
         }
 
         QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
@@ -35,7 +35,7 @@ void Plane::advance(int phase)
                 { 
                     setPixmap(QPixmap(":/images/models/plane_crashed.png"));
                     emit playSound(QUrl("qrc:/music/sounds/crash.mp3"), 5);
-                    emit gameOver(QString("  You have crashed!  "));
+                    emit gameOver(QString("You have crashed!"));
                     return;
                 }
                 else if(typeid(*(collidingItems[i])) == typeid(Fuel))
