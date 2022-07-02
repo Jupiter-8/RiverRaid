@@ -3,7 +3,7 @@
 #include "widget.h"
 
 Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), fuelAmount(quint32(10000)), isRefuelling(false)
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), fuelAmount(quint32(10000)), isRefueling(false)
 {
 }
 
@@ -11,12 +11,10 @@ void Plane::advance(int phase)
 {
     if(phase == 0)
     {
-        if(!isRefuelling && fuelAmount - (quint32)(speedY * 2) >= (quint32)(speedY * 2))
+        if(!isRefueling && fuelAmount - (quint32)(speedY * 2) >= (quint32)(speedY * 2))
             fuelAmount -= speedY * 2;
-        else if(!isRefuelling && fuelAmount - (quint32)(speedY * 2) < (quint32)(speedY * 2))
-        {
+        else if(!isRefueling && fuelAmount - (quint32)(speedY * 2) < (quint32)(speedY * 2))
             emit gameOver(QString("        Out of fuel!"));
-        }
 
         QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
         if(!collidingItems.empty())
@@ -34,12 +32,13 @@ void Plane::advance(int phase)
                     changePixmap(":/images/models/plane_crashed.png");
                     emit playSound(QUrl("qrc:/music/sounds/crash.mp3"), 5);
                     emit gameOver(QString("  You have crashed!  "));
+                    return;
                 }
                 else if(typeid(*(collidingItems[i])) == typeid(Fuel))
                 {
-                    if(!isRefuelling)
+                    if(!isRefueling)
                     {
-                        isRefuelling = true;
+                        isRefueling = true;
                         emit playSound(QUrl("qrc:/music/sounds/refuel.wav"), 5);
                     }
 
@@ -47,9 +46,10 @@ void Plane::advance(int phase)
                         fuelAmount += 200;
                     else
                         fuelAmount += 10000 - fuelAmount;
+                    return;
                 }
                 else
-                    isRefuelling = false;
+                    isRefueling = false;
             }
         }
     }

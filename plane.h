@@ -20,7 +20,7 @@ class Plane : public BaseGameObject
 
 private:
     quint32 fuelAmount;
-    bool isRefuelling;
+    bool isRefueling;
 
 public:
     Plane(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
