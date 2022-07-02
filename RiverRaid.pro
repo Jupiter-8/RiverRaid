@@ -18,6 +18,7 @@ SOURCES += \
     land.cpp \
     main.cpp \
     mainmenu.cpp \
+    objectdescription.cpp \
     plane.cpp \
     river.cpp \
     ship.cpp \
@@ -32,6 +33,8 @@ HEADERS += \
     helicopter.h \
     land.h \
     mainmenu.h \
+    objectdescription.h \
+    objecttype.h \
     plane.h \
     river.h \
     ship.h \

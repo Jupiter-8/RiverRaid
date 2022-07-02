@@ -2,6 +2,8 @@
 #include "ui_widget.h"
 #include "bullet.h"
 #include "mainmenu.h"
+#include "objectdescription.h"
+#include "objecttype.h"
 
 #include <QDebug>
 
@@ -39,116 +41,67 @@ void Widget::initializeScene()
     River * river = new River(0, -9400, 0, speedY);
     scene->addItem(river);
 
-    Ship * ship1 = new Ship(160, -150, 1, speedY);
-    scene->addItem(ship1);
-    connect(ship1, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    QList<ObjectDescription> objects = QList<ObjectDescription>
+    {
+        ObjectDescription(160, -150,  1, speedY, ObjectType::SHIP),
+        ObjectDescription(210, -3000, 1, speedY, ObjectType::SHIP),
+        ObjectDescription(220, -1800, 1, speedY, ObjectType::SHIP),
+        ObjectDescription(280, -2400, 1, speedY, ObjectType::SHIP),
+        ObjectDescription(280, -5500, 1, speedY, ObjectType::SHIP),
+        ObjectDescription(280, -7500, 1, speedY, ObjectType::SHIP),
+        ObjectDescription(280, -8100, 1, speedY, ObjectType::SHIP),
 
-    Ship * ship2 = new Ship(210, -3000, 1, speedY);
-    scene->addItem(ship2);
-    connect(ship2, &BaseGameObject::addPoints, this, &Widget::addPoints);
+        ObjectDescription(210, 0,     -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(270, -450,  -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(210, -600,  -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(260, -4200, -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(300, -8700, -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(290, -5000, -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(290, -1600, -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(230, -2500, -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(230, -6500, -1, speedY, ObjectType::HELICOPTER),
+        ObjectDescription(230, -6900, -1, speedY, ObjectType::HELICOPTER),
 
-    Ship * ship3 = new Ship(220, -1800, 1, speedY);
-    scene->addItem(ship3);
-    connect(ship3, &BaseGameObject::addPoints, this, &Widget::addPoints);
+        ObjectDescription(800, -3600, -3, speedY, ObjectType::ENEMYPLANE),
+        ObjectDescription(800, -8000, -3, speedY, ObjectType::ENEMYPLANE),
 
-    Ship * ship4 = new Ship(280, -2400, 1, speedY);
-    scene->addItem(ship4);
-    connect(ship4, &BaseGameObject::addPoints, this, &Widget::addPoints);
+        ObjectDescription(360, -1050, 0, 1, ObjectType::FUEL),
+        ObjectDescription(250, -5800, 0, 1, ObjectType::FUEL),
 
-    Ship * ship5 = new Ship(280, -5500, 1, speedY);
-    scene->addItem(ship5);
-    connect(ship5, &BaseGameObject::addPoints, this, &Widget::addPoints);
+        ObjectDescription(300, -3529, 0, speedY, ObjectType::BRIDGE),
+        ObjectDescription(300, -8529, 0, speedY, ObjectType::BRIDGE),
+        ObjectDescription(300, -4535, 0, speedY, ObjectType::BRIDGE)
+    };
 
-    Ship * ship6 = new Ship(280, -7500, 1, speedY);
-    scene->addItem(ship6);
-    connect(ship6, &BaseGameObject::addPoints, this, &Widget::addPoints);
+    for(auto &obj : objects)
+    {
+        BaseGameObject *object = nullptr;
+        switch(obj.type)
+        {
+            case ObjectType::SHIP:
+                object = new Ship(obj.x, obj.y, obj.speedX, obj.speedY);
+                break;
+            case ObjectType::HELICOPTER:
+                object = new Helicopter(obj.x, obj.y, obj.speedX, obj.speedY);
+                object->setScale(0.7);
+                break;
+            case ObjectType::ENEMYPLANE:
+                object = new EnemyPlane(obj.x, obj.y, obj.speedX, obj.speedY);
+                object->setScale(0.7);
+                break;
+            case ObjectType::FUEL:
+                object = new Fuel(obj.x, obj.y, obj.speedX, obj.speedY);
+                object->setScale(0.7);
+                break;
+            case ObjectType::BRIDGE:
+                object = new Bridge(obj.x, obj.y, obj.speedX, obj.speedY);
+                break;
+        }
 
-    Ship * ship7 = new Ship(280, -8100, 1, speedY);
-    scene->addItem(ship7);
-    connect(ship7, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter1 = new Helicopter(210, 0, -1, speedY);
-    helicopter1->setScale(0.7);
-    scene->addItem(helicopter1);
-    connect(helicopter1, &BaseGameObject::addPoints, this, &Widget::addPoints);
-    connect(helicopter1, &BaseGameObject::playSound, this, &Widget::playSound);
-
-    Helicopter * helicopter2 = new Helicopter(270, -450, -1, speedY);
-    helicopter2->setScale(0.7);
-    scene->addItem(helicopter2);
-    connect(helicopter2, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter3 = new Helicopter(210, -600, -1, speedY);
-    helicopter3->setScale(0.7);
-    scene->addItem(helicopter3);
-    connect(helicopter3, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter4 = new Helicopter(260, -4200, -1, speedY);
-    helicopter4->setScale(0.7);
-    scene->addItem(helicopter4);
-    connect(helicopter4, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter5 = new Helicopter(300, -8700, -1, speedY);
-    helicopter5->setScale(0.7);
-    scene->addItem(helicopter5);
-    connect(helicopter5, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter6 = new Helicopter(290, -5000, -1, speedY);
-    helicopter6->setScale(0.7);
-    scene->addItem(helicopter6);
-    connect(helicopter6, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter7 = new Helicopter(290, -1600, -1, speedY);
-    helicopter7->setScale(0.7);
-    scene->addItem(helicopter7);
-    connect(helicopter7, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter8 = new Helicopter(230, -2500, -1, speedY);
-    helicopter8->setScale(0.7);
-    scene->addItem(helicopter8);
-    connect(helicopter8, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter9 = new Helicopter(230, -6500, -1, speedY);
-    helicopter9->setScale(0.7);
-    scene->addItem(helicopter9);
-    connect(helicopter9, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Helicopter * helicopter10 = new Helicopter(230, -6900, -1, speedY);
-    helicopter10->setScale(0.7);
-    scene->addItem(helicopter10);
-    connect(helicopter10, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Fuel * fuel1 = new Fuel(360, -1050, 0, 1);
-    fuel1->setScale(0.7);
-    scene->addItem(fuel1);
-    connect(fuel1, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Fuel * fuel2 = new Fuel(250, -5800, 0, 1);
-    fuel2->setScale(0.7);
-    scene->addItem(fuel2);
-    connect(fuel2, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    EnemyPlane * enemyPlane1 = new EnemyPlane(800, -3600, -3, speedY);
-    enemyPlane1->setScale(0.7);
-    scene->addItem(enemyPlane1);
-    connect(enemyPlane1, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    EnemyPlane * enemyPlane2 = new EnemyPlane(800, -8000, -3, speedY);
-    enemyPlane2->setScale(0.7);
-    scene->addItem(enemyPlane2);
-    connect(enemyPlane2, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Bridge * bridge1 = new Bridge(300, -3529, 0, speedY);
-    scene->addItem(bridge1);
-    connect(bridge1, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Bridge * bridge2 = new Bridge(300, -8529, 0, speedY);
-    scene->addItem(bridge2);
-    connect(bridge2, &BaseGameObject::addPoints, this, &Widget::addPoints);
-
-    Bridge * bridge3 = new Bridge(300, -4535, 0, speedY);
-    scene->addItem(bridge3);
-    connect(bridge3, &BaseGameObject::addPoints, this, &Widget::addPoints);
+        scene->addItem(object);
+        connect(object, &BaseGameObject::addPoints, this, &Widget::addPoints);
+        connect(object, &BaseGameObject::playSound, this, &Widget::playSound);
+    }
 
     plane->setScale(0.5);
     scene->addItem(plane);
