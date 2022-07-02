@@ -31,7 +31,7 @@
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-1</x>
       <y>0</y>
       <width>805</width>
       <height>605</height>
@@ -136,7 +136,7 @@
      </property>
      <property name="font">
       <font>
-       <family>MS Shell Dlg 2</family>
+       <family>Visitor TT1 BRK</family>
        <pointsize>24</pointsize>
       </font>
      </property>
@@ -180,7 +180,7 @@
      </property>
      <property name="font">
       <font>
-       <family>MS Shell Dlg 2</family>
+       <family>Visitor TT1 BRK</family>
        <pointsize>24</pointsize>
       </font>
      </property>

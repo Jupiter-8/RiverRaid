@@ -1,27 +1,26 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include "plane.h"
+#include "bridge.h"
+#include "enemyplane.h"
+#include "fuel.h"
+#include "helicopter.h"
 #include "land.h"
+#include "plane.h"
 #include "river.h"
 #include "ship.h"
-#include "enemyplane.h"
-#include "helicopter.h"
-#include "bridge.h"
-#include "fuel.h"
 
-#include <QGraphicsScene>
-#include <QWidget>
-#include <QPolygonF>
-#include <QTimer>
-#include <QSet>
-#include <QEvent>
-#include <QDebug>
-#include <QKeyEvent>
-#include <QTransform>
 #include <QApplication>
+#include <QEvent>
+#include <QGraphicsScene>
+#include <QKeyEvent>
 #include <QMessageBox>
+#include <QPolygonF>
 #include <QPushButton>
+#include <QSet>
+#include <QTimer>
+#include <QTransform>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -38,25 +37,26 @@ public:
     void initializeScene();
     void showGameOverDialog(QString message);
 
-public slots:
-    void advance();
-    void stopGame(QString message);
-    void addPoints(quint32 points);
-    void playSound(QUrl media, int volume);
-
 private:
-    Ui::Widget *ui;
-    QGraphicsScene *scene;
-    QTimer *timer;
-    bool running;
-    QSet<int> pressedKeys;
-    Plane *plane;
-    quint16 points;
-    quint8 speedY;
-    QApplication *app;
+    Ui::Widget *m_ui;
+    QGraphicsScene *m_scene;
+    QTimer *m_timer;
+    QSet<int> m_pressedKeys;
+    Plane *m_plane;
+    quint16 m_points;
+    quint8 m_speedY;
+    QApplication *m_app;
 
     bool eventFilter(QObject *object, QEvent *event);
     void changeObjectsYSpeed(bool direction);
     void closeEvent(QCloseEvent *event);
+
+public slots:
+    void stopGame(const QString &message);
+    void addPoints(quint32 points);
+    void playSound(const QUrl &media, int volume);
+
+private slots:
+    void advance();
 };
 #endif // WIDGET_H

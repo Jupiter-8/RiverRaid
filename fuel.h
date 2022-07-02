@@ -10,8 +10,9 @@ class Fuel : public BaseGameObject
 
 public:
     Fuel(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
-           QPixmap pixmap = QPixmap(":/images/models/fuel.png"), QGraphicsItem *parent = nullptr);
+           const QPixmap &pixmap = QPixmap(":/images/models/fuel.png"), QGraphicsItem *parent = nullptr);
 
+private slots:
     void advance(int phase);
 };
 

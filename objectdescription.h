@@ -8,11 +8,11 @@
 struct ObjectDescription
 {
 public:
-    qreal x;
-    qreal y;
-    qint8 speedX;
-    qint8 speedY;
-    ObjectType type;
+    qreal m_x;
+    qreal m_y;
+    qint8 m_speedX;
+    qint8 m_speedY;
+    ObjectType m_type;
 
     ObjectDescription(qreal x, qreal y, quint8 speedX, quint8 speedY, ObjectType type);
 };

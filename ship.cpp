@@ -1,8 +1,8 @@
 #include "ship.h"
 #include "widget.h"
 
-Ship::Ship(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), transform(QTransform())
+Ship::Ship(qreal x, qreal y, quint8 speedX, quint8 speedY, const QPixmap &pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), m_transform(QTransform())
 {
 }
 
@@ -24,9 +24,9 @@ void Ship::advance(int phase)
                 {
                     if(typeid(*(collidingItems[i])) == typeid(Land))
                     {
-                        transform.rotate(180, Qt::YAxis);
-                        setTransform(transform);
-                        speedX = -speedX;
+                        m_transform.rotate(180, Qt::YAxis);
+                        setTransform(m_transform);
+                        m_speedX = -m_speedX;
                     }
                     if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
@@ -38,9 +38,11 @@ void Ship::advance(int phase)
                     }
                 }
             }
-            moveBy(speedX, speedY);
+            moveBy(m_speedX, m_speedY);
         }
         else
-            moveBy(0, speedY);
+        {
+            moveBy(0, m_speedY);
+        }
     }
 }

@@ -2,8 +2,8 @@
 #define HELICOPTER_H
 
 #include "basegameobject.h"
-#include "land.h"
 #include "bullet.h"
+#include "land.h"
 
 #include <QTransform>
 
@@ -11,13 +11,14 @@ class Helicopter : public BaseGameObject
 {
     Q_OBJECT
 
-private:
-    QTransform transform;
-
 public:
     Helicopter(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
-           QPixmap pixmap = QPixmap(":/images/models/helicopter_1.png"), QGraphicsItem *parent = nullptr);
+           const QPixmap &pixmap = QPixmap(":/images/models/helicopter_1.png"), QGraphicsItem *parent = nullptr);
 
+private:
+    QTransform m_transform;
+
+private slots:
     void advance(int phase);
 };
 

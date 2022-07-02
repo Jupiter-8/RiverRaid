@@ -10,8 +10,9 @@ class EnemyPlane : public BaseGameObject
 
 public:
     EnemyPlane(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
-           QPixmap pixmap = QPixmap(":/images/models/enemy_plane.png"), QGraphicsItem *parent = nullptr);
+           const QPixmap &pixmap = QPixmap(":/images/models/enemy_plane.png"), QGraphicsItem *parent = nullptr);
 
+private slots:
     void advance(int phase);
 };
 

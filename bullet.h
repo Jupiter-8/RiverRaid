@@ -11,12 +11,13 @@ class Bullet : public BaseGameObject
 
 public:
     Bullet(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
-           QPixmap pixmap = QPixmap(":/images/models/bullet.png"), QGraphicsItem *parent = nullptr);
-
-    void advance(int phase);
+           const QPixmap &pixmap = QPixmap(":/images/models/bullet.png"), QGraphicsItem *parent = nullptr);
 
 private:
-    QMediaPlayer *mediaPlayer;
+    QMediaPlayer *m_mediaPlayer;
+
+private slots:
+    void advance(int phase);
 };
 
 #endif // BULLET_H

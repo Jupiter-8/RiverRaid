@@ -6,17 +6,19 @@
 class Land : public BaseGameObject
 {
     Q_OBJECT
+
 public:
     Land(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
-         QPixmap pixmap = QPixmap(":/images/models/land.png"), QGraphicsItem *parent = nullptr);
-
-    void advance(int phase);
+         const QPixmap &pixmap = QPixmap(":/images/models/land.png"), QGraphicsItem *parent = nullptr);
 
 private:
-    bool isGameOver;
+    bool m_isGameOver;
+
+private slots:
+    void advance(int phase);
 
 signals:
-    void gameOver(QString message);
+    void gameOver(const QString &message);
 };
 
 #endif // LAND_H

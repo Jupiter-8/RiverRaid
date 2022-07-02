@@ -6,10 +6,12 @@
 class River : public BaseGameObject
 {
     Q_OBJECT
+
 public:
     River(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
-          QPixmap pixmap = QPixmap(":/images/models/river.png"), QGraphicsItem *parent = nullptr);
+          const QPixmap &pixmap = QPixmap(":/images/models/river.png"), QGraphicsItem *parent = nullptr);
 
+private slots:
     void advance(int phase);
 };
 

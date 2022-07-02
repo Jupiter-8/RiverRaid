@@ -10,8 +10,9 @@ class Bridge : public BaseGameObject
 
 public:
     Bridge(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
-           QPixmap pixmap = QPixmap(":/images/models/bridge.png"), QGraphicsItem *parent = nullptr);
+           const QPixmap &pixmap = QPixmap(":/images/models/bridge.png"), QGraphicsItem *parent = nullptr);
 
+private slots:
     void advance(int phase);
 };
 

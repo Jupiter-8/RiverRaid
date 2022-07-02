@@ -2,21 +2,23 @@
 #define SHIP_H
 
 #include "basegameobject.h"
-#include "land.h"
 #include "bullet.h"
+#include "land.h"
+
 #include <QTransform>
 
 class Ship : public BaseGameObject
 {
     Q_OBJECT
 
-private:
-    QTransform transform;
-
 public:
     Ship(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
-         QPixmap pixmap = QPixmap(":/images/models/ship.png"), QGraphicsItem *parent = nullptr);
+         const QPixmap &pixmap = QPixmap(":/images/models/ship.png"), QGraphicsItem *parent = nullptr);
 
+private:
+    QTransform m_transform;
+
+private slots:
     void advance(int phase);
 };
 

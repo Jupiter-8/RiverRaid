@@ -1,6 +1,6 @@
 #include "fuel.h"
 
-Fuel::Fuel(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
+Fuel::Fuel(qreal x, qreal y, quint8 speedX, quint8 speedY, const QPixmap &pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, pixmap, parent)
 {
 }
@@ -32,6 +32,6 @@ void Fuel::advance(int phase)
                 }
             }
         }
-        moveBy(speedX, speedY);
+        moveBy(m_speedX, m_speedY);
     }
 }

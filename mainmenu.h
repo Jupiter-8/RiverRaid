@@ -4,7 +4,6 @@
 #include <QApplication>
 #include <QWidget>
 
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainMenu; }
 QT_END_NAMESPACE
@@ -17,18 +16,18 @@ public:
     MainMenu(QApplication *app, QWidget *parent = nullptr);
     ~MainMenu();
 
+private:
+    QApplication *m_app;
+    Ui::MainMenu *m_ui;
+
+    void closeEvent(QCloseEvent *event);
+
 private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
+    void on_startGameButton_clicked();
+    void on_exitGameButton_clicked();
 
 signals:
     void quitGame();
-
-private:
-    Ui::MainMenu *ui;
-    QApplication *app;
-
-    void closeEvent(QCloseEvent *event);
 };
 
 #endif // MAINMENU_H

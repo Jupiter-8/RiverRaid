@@ -1,7 +1,7 @@
 #include "basegameobject.h"
 
-BaseGameObject::BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
-    : QGraphicsPixmapItem(pixmap, parent), speedX(speedX), speedY(speedY), timer(new QTimer(this))
+BaseGameObject::BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, const QPixmap &pixmap, QGraphicsItem *parent)
+    : QGraphicsPixmapItem(pixmap, parent), m_speedX(speedX), m_speedY(speedY)
 {
     setX(x);
     setY(y);
@@ -9,27 +9,22 @@ BaseGameObject::BaseGameObject(qreal x, qreal y, quint8 speedX, quint8 speedY, Q
 
 void BaseGameObject::setSpeedX(quint8 value)
 {
-    speedX = value;
+    m_speedX = value;
 }
 
 void BaseGameObject::setSpeedY(quint8 value)
 {
-    speedY = value;
+    m_speedY = value;
 }
 
-quint8 BaseGameObject::getSpeedX()
+quint8 BaseGameObject::getSpeedX() const
 {
-    return speedX;
+    return m_speedX;
 }
 
-quint8 BaseGameObject::getSpeedY()
+quint8 BaseGameObject::getSpeedY() const
 {
-    return speedY;
-}
-
-void BaseGameObject::changePixmap(QString path)
-{
-    setPixmap(QPixmap(path));
+    return m_speedY;
 }
 
 void BaseGameObject::deleteObject()

@@ -2,8 +2,8 @@
 #include "bullet.h"
 #include "widget.h"
 
-Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), fuelAmount(quint32(10000)), isRefueling(false)
+Plane::Plane(qreal x, qreal y, quint8 speedX, quint8 speedY, const QPixmap &pixmap, QGraphicsItem *parent)
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), m_fuelAmount(quint32(10000)), m_isRefueling(false)
 {
 }
 
@@ -11,10 +11,14 @@ void Plane::advance(int phase)
 {
     if(phase == 0)
     {
-        if(!isRefueling && fuelAmount - (quint32)(speedY * 2) >= (quint32)(speedY * 2))
-            fuelAmount -= speedY * 2;
-        else if(!isRefueling && fuelAmount - (quint32)(speedY * 2) < (quint32)(speedY * 2))
+        if(!m_isRefueling && m_fuelAmount - (quint32)(m_speedY * 2) >= (quint32)(m_speedY * 2))
+        {
+            m_fuelAmount -= m_speedY * 2;
+        }
+        else if(!m_isRefueling && m_fuelAmount - (quint32)(m_speedY * 2) < (quint32)(m_speedY * 2))
+        {
             emit gameOver(QString("        Out of fuel!"));
+        }
 
         QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
         if(!collidingItems.empty())
@@ -29,33 +33,40 @@ void Plane::advance(int phase)
                    typeid(*(collidingItems[i])) == typeid(Helicopter)
                 )
                 { 
-                    changePixmap(":/images/models/plane_crashed.png");
+                    setPixmap(QPixmap(":/images/models/plane_crashed.png"));
                     emit playSound(QUrl("qrc:/music/sounds/crash.mp3"), 5);
                     emit gameOver(QString("  You have crashed!  "));
                     return;
                 }
                 else if(typeid(*(collidingItems[i])) == typeid(Fuel))
                 {
-                    if(!isRefueling)
+                    if(!m_isRefueling)
                     {
-                        isRefueling = true;
-                        emit playSound(QUrl("qrc:/music/sounds/refuel.wav"), 40);
+                        m_isRefueling = true;
+                        emit playSound(QUrl("qrc:/music/sounds/refuel.wav"), 100);
                     }
 
-                    if(fuelAmount + 200 <= 9800)
-                        fuelAmount += 200;
+                    if(m_fuelAmount + 200 <= 9800)
+                    {
+                        m_fuelAmount += 200;
+                    }
                     else
-                        fuelAmount += 10000 - fuelAmount;
+                    {
+                        m_fuelAmount += 10000 - m_fuelAmount;
+                    }
+
                     return;
                 }
                 else
-                    isRefueling = false;
+                {
+                    m_isRefueling = false;
+                }
             }
         }
     }
 }
 
-quint32 Plane::getFuelAmount()
+quint32 Plane::getFuelAmount() const
 {
-    return fuelAmount;
+    return m_fuelAmount;
 }

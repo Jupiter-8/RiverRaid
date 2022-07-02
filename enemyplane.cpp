@@ -1,6 +1,6 @@
 #include "enemyplane.h"
 
-EnemyPlane::EnemyPlane(qreal x, qreal y, quint8 speedX, quint8 speedY, QPixmap pixmap, QGraphicsItem *parent)
+EnemyPlane::EnemyPlane(qreal x, qreal y, quint8 speedX, quint8 speedY, const QPixmap &pixmap, QGraphicsItem *parent)
     : BaseGameObject(x, y, speedX, speedY, pixmap, parent)
 {
 }
@@ -31,9 +31,11 @@ void EnemyPlane::advance(int phase)
                     }
                 }
             }
-            moveBy(speedX, speedY);
+            moveBy(m_speedX, m_speedY);
         }
         else
-            moveBy(0, speedY);
+        {
+            moveBy(0, m_speedY);
+        }
     }
 }

@@ -6,11 +6,11 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
-    MainMenu w(&a);
-    w.show();
-    QObject::connect(&w, &MainMenu::quitGame, &a, &QApplication::quit);
+    MainMenu menu(&app);
+    menu.show();
+    QObject::connect(&menu, &MainMenu::quitGame, &app, &QApplication::quit);
 
-    return a.exec();
+    return app.exec();
 }
