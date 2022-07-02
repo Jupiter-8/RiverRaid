@@ -31,7 +31,7 @@ void Helicopter::advance(int phase)
                     else if(typeid(*(collidingItems[i])) == typeid(Bullet))
                     {
                         emit addPoints(60);
-                        emit playSound(QUrl("qrc:/music/sounds/explosion.wav"), 5);
+                        emit playSound(QUrl("qrc:/music/sounds/explosion.wav"), 7);
                         dynamic_cast<BaseGameObject *>(collidingItems[i])->deleteObject();
                         deleteObject();
                         return;

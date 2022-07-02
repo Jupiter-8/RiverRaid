@@ -12,7 +12,7 @@ void Land::advance(int phase)
     if(y() > -50 && !isGameOver)
     {
         isGameOver = true;
-        emit playSound(QUrl("qrc:/music/sounds/game_end.wav"), 10);
+        emit playSound(QUrl("qrc:/music/sounds/game_end.wav"), 30);
         emit gameOver(QString("     You have won!"));
     }
 }

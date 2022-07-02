@@ -39,7 +39,7 @@ void Plane::advance(int phase)
                     if(!isRefueling)
                     {
                         isRefueling = true;
-                        emit playSound(QUrl("qrc:/music/sounds/refuel.wav"), 5);
+                        emit playSound(QUrl("qrc:/music/sounds/refuel.wav"), 40);
                     }
 
                     if(fuelAmount + 200 <= 9800)

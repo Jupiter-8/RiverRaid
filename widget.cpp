@@ -37,6 +37,7 @@ void Widget::initializeScene()
     Land * land = new Land(0, -9400, 0, speedY);
     scene->addItem(land);
     connect(land, &Land::gameOver, this, &Widget::stopGame);
+    connect(land, &BaseGameObject::playSound, this, &Widget::playSound);
 
     River * river = new River(0, -9400, 0, speedY);
     scene->addItem(river);
