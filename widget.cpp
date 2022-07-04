@@ -138,7 +138,16 @@ void Widget::showGameOverDialog(QString message)
 
 void Widget::advance()
 {
-    m_ui->fuelLabel2->setText(QString::number((m_plane->getFuelAmount() / 100)) + " %");
+    uint fuelAmount = m_plane->getFuelAmount() / 100;
+    m_ui->fuelLabel2->setText(QString::number(fuelAmount) + " %");
+    if(fuelAmount < 20)
+    {
+        m_ui->fuelLabel2->setStyleSheet("color: red;");
+    }
+    else
+    {
+        m_ui->fuelLabel2->setStyleSheet("color: #e8e85c;");
+    }
 }
 
 void Widget::stopGame(const QString &message)
