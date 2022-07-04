@@ -17,6 +17,7 @@ void Plane::advance(int phase)
         }
         else if(!m_isRefueling && m_fuelAmount - (quint32)(m_speedY * 2) < (quint32)(m_speedY * 2))
         {
+            emit playSound(QUrl("qrc:/music/sounds/no_fuel.wav"), 10);
             emit gameOver(QString(" Out of the fuel!"));
         }
 

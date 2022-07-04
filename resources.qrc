@@ -17,6 +17,7 @@
         <file>sounds/explosion.wav</file>
         <file>sounds/refuel.wav</file>
         <file>sounds/game_end.wav</file>
+        <file>sounds/no_fuel.wav</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>fonts/visitor1.ttf</file>
