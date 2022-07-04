@@ -1,7 +1,7 @@
 #include "helicopter.h"
 
 Helicopter::Helicopter(qreal x, qreal y, quint8 speedX, quint8 speedY, const QPixmap &pixmap, QGraphicsItem *parent)
-    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), m_transform(QTransform())
+    : BaseGameObject(x, y, speedX, speedY, pixmap, parent), m_transform(new QTransform())
 {
 }
 
@@ -23,9 +23,9 @@ void Helicopter::advance(int phase)
                 {
                     if(typeid(*(collidingItems[i])) == typeid(Land))
                     {
-                        m_transform.rotate(180, Qt::YAxis);
-                        m_transform.translate(-65,0);
-                        setTransform(m_transform);
+                        m_transform->rotate(180, Qt::YAxis);
+                        m_transform->translate(-65,0);
+                        setTransform(*m_transform);
                         m_speedX = -m_speedX;
                     }
                     else if(typeid(*(collidingItems[i])) == typeid(Bullet))

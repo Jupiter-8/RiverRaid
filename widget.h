@@ -15,11 +15,8 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QMessageBox>
-#include <QPolygonF>
 #include <QPushButton>
-#include <QSet>
 #include <QTimer>
-#include <QTransform>
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE

@@ -5,8 +5,6 @@
 #include <QGraphicsScene>
 #include <QObject>
 #include <QPixmap>
-#include <QTimer>
-#include <QTransform>
 #include <QUrl>
 
 class BaseGameObject : public QObject, public QGraphicsPixmapItem

@@ -16,7 +16,7 @@ public:
          const QPixmap &pixmap = QPixmap(":/images/models/ship.png"), QGraphicsItem *parent = nullptr);
 
 private:
-    QTransform m_transform;
+    QTransform *m_transform;
 
 private slots:
     void advance(int phase);

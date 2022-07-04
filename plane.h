@@ -9,10 +9,6 @@
 #include "land.h"
 #include "ship.h"
 
-#include <QGraphicsScene>
-#include <QKeyEvent>
-#include <QString>
-
 class Plane : public BaseGameObject
 {
     Q_OBJECT
