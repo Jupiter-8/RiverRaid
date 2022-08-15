@@ -9,7 +9,12 @@ void Bridge::advance(int phase)
 {
     if(phase == 0)
     {
-        if(y() < 600 && y() > 0)
+        if(y() == 600)
+        {
+            deleteObject();
+            return;
+        }
+        else if(y() < 600 && y() > 0)
         {
             QList<QGraphicsItem *> collidingItems = scene()->collidingItems(this);
             if(!collidingItems.empty())

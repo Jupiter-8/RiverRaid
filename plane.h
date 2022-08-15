@@ -17,7 +17,7 @@ public:
     Plane(qreal x, qreal y, quint8 speedX = 0, quint8 speedY = 0,
           const QPixmap &pixmap = QPixmap(":/images/models/plane.png"), QGraphicsItem *parent = nullptr);
 
-    uint getFuelAmount() const;
+    quint32 getFuelAmount() const;
 
 private:
     quint32 m_fuelAmount;

@@ -138,7 +138,7 @@ void Widget::showGameOverDialog(QString message)
 
 void Widget::advance()
 {
-    uint fuelAmount = m_plane->getFuelAmount() / 100;
+    quint32 fuelAmount = m_plane->getFuelAmount() / 100;
     m_ui->fuelLabel2->setText(QString::number(fuelAmount) + " %");
     if(fuelAmount < 20)
     {
