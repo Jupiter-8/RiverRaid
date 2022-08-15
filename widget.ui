@@ -81,10 +81,10 @@
     <widget class="QLabel" name="pointsLabel1">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>28</x>
        <y>30</y>
-       <width>111</width>
-       <height>30</height>
+       <width>132</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="font">
@@ -106,10 +106,10 @@
     <widget class="QLabel" name="pointsLabel2">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>170</x>
        <y>30</y>
        <width>141</width>
-       <height>30</height>
+       <height>32</height>
       </rect>
      </property>
      <property name="font">
@@ -128,10 +128,10 @@
     <widget class="QLabel" name="speedLabel1">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>320</x>
        <y>30</y>
-       <width>101</width>
-       <height>30</height>
+       <width>132</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="font">
@@ -153,7 +153,7 @@
        <x>460</x>
        <y>30</y>
        <width>81</width>
-       <height>30</height>
+       <height>32</height>
       </rect>
      </property>
      <property name="font">
@@ -172,10 +172,10 @@
     <widget class="QLabel" name="fuelLabel1">
      <property name="geometry">
       <rect>
-       <x>570</x>
+       <x>564</x>
        <y>30</y>
-       <width>81</width>
-       <height>30</height>
+       <width>100</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="font">
@@ -194,10 +194,10 @@
     <widget class="QLabel" name="fuelLabel2">
      <property name="geometry">
       <rect>
-       <x>670</x>
+       <x>672</x>
        <y>30</y>
        <width>101</width>
-       <height>30</height>
+       <height>32</height>
       </rect>
      </property>
      <property name="font">

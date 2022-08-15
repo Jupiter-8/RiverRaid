@@ -77,16 +77,16 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>70</y>
-     <width>500</width>
+     <x>125</x>
+     <y>80</y>
+     <width>550</width>
      <height>91</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Visitor TT1 BRK</family>
-     <pointsize>72</pointsize>
+     <pointsize>64</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -95,13 +95,16 @@
    <property name="text">
     <string>River Raid</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>665</y>
-     <width>271</width>
+     <width>361</width>
      <height>31</height>
     </rect>
    </property>
